@@ -1,0 +1,25 @@
+.DS_Store
+Thumbs.db
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and local env files
+*.log
+.env
+.env.*
+
+# Dependency and build directories
+node_modules/
+dist/
+build/
+.cache/
+
+# Website audit local artifacts
+.squirrel/
+squirrel.db
+squirrel-*.db
+audit-report.*

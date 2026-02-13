@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Pievra — Jules Connect | AI Coding Agent Manager</title>
+  <meta name="description" content="Manage your Jules AI coding sessions on the go. Create tasks, monitor progress, and approve plans from any Apple device.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://asapps.fr/julesconnector/">
+  <meta name="keywords" content="jules, ai, coding, agent, developer, github, code, sessions, google, programming">
+  <meta property="og:title" content="Pievra — Jules Connect">
+  <meta property="og:description" content="A native client for Jules, Google's AI-powered coding agent. Available on iPhone, iPad, and Mac.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://asapps.fr/julesconnector/">
+  <meta property="og:image" content="https://asapps.fr/favicon.ico">
+  <meta name="apple-itunes-app" content="app-id=fr.asapps.JulesConnect">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0a0a08;--surface:#141412;--surface-alt:#1a1a17;
+      --border:#2e2e2a;--border-light:#484844;
+      --text:#ede9df;--text-muted:#8a8778;
+      --accent:#a78bfa;--accent-soft:rgba(167,139,250,0.09);--accent-glow:rgba(167,139,250,0.19);
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Manrope',sans-serif;background:var(--bg);color:var(--text);
+      line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    }
+    body::after{
+      content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.025;
+      background:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size:256px 256px;
+    }
+    a{color:inherit;text-decoration:none}
+
+    /* NAV */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:64px;
+      background:rgba(10,10,8,.75);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+      border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;
+    }
+    .nav-logo{font-family:'Instrument Serif',serif;font-style:italic;font-size:1.5rem;color:var(--text);transition:color .2s}
+    .nav-logo:hover{color:var(--accent)}
+    .nav-links{display:flex;align-items:center;gap:2rem}
+    .nav-links a{font-size:.9rem;font-weight:500;color:var(--text-muted);transition:color .25s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-cta{
+      display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.1rem;border-radius:8px;
+      background:var(--accent);color:#0a0a08!important;font-size:.85rem;font-weight:600;transition:transform .2s,box-shadow .2s;
+    }
+    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 20px var(--accent-glow)}
+    .nav-cta svg{width:15px;height:15px}
+
+    /* HERO */
+    .hero{
+      min-height:100vh;display:flex;align-items:center;padding:100px 2rem 80px;
+      position:relative;overflow:hidden;
+    }
+    .hero::before{
+      content:"";position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(167,139,250,.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(167,139,250,.04) 1px,transparent 1px);
+      background-size:80px 80px;
+      mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,black 20%,transparent 70%);
+      -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,black 20%,transparent 70%);
+    }
+    .hero::after{
+      content:"";position:absolute;top:10%;left:30%;width:600px;height:600px;
+      background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);
+      pointer-events:none;animation:breathe 8s ease-in-out infinite;
+    }
+    @keyframes breathe{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.8;transform:scale(1.15)}}
+    .hero-inner{
+      display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+      max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1;
+    }
+    .hero-label{
+      display:inline-flex;align-items:center;gap:.6rem;
+      font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:500;
+      letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;
+    }
+    .hero-label::before{
+      content:"";display:block;width:8px;height:8px;border-radius:50%;
+      background:var(--accent);animation:pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--accent-glow)}50%{opacity:.7;box-shadow:0 0 0 6px transparent}}
+    .hero h1{
+      font-family:'Manrope',sans-serif;font-size:clamp(2.8rem,5.5vw,4.2rem);
+      font-weight:800;line-height:1.08;letter-spacing:-.035em;margin-bottom:1.5rem;
+    }
+    .hero h1 em{
+      font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;
+      color:var(--accent);letter-spacing:-.02em;
+    }
+    .hero-sub{font-size:1.1rem;line-height:1.7;color:var(--text-muted);max-width:480px;margin-bottom:2.5rem}
+    .hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+    .btn{
+      display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.6rem;border-radius:10px;
+      font-family:'Manrope',sans-serif;font-size:.95rem;font-weight:600;border:none;cursor:pointer;transition:all .25s;
+    }
+    .btn svg{width:20px;height:20px}
+    .btn-primary{background:var(--accent);color:#0a0a08}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--accent-glow)}
+    .btn-ghost{background:transparent;color:var(--text);border:1px solid #626260}
+    .btn-ghost:hover{border-color:var(--accent);background:var(--accent-soft)}
+    .hero-platforms{display:flex;gap:1.5rem;font-size:.85rem;color:var(--text-muted);font-weight:500}
+    .hero-platforms span{display:flex;align-items:center;gap:.4rem}
+
+    /* MOCKUP */
+    .mockup-wrapper{position:relative;display:flex;justify-content:center}
+    .mockup{
+      width:320px;background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;
+      box-shadow:0 0 0 1px var(--border),0 20px 60px rgba(0,0,0,.5),0 0 120px var(--accent-soft);
+      position:relative;z-index:2;animation:float 6s ease-in-out infinite;
+    }
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .mockup-bg-card{
+      position:absolute;top:30px;right:-20px;width:280px;height:200px;
+      background:var(--surface);border:1px solid var(--border);border-radius:16px;
+      opacity:.35;transform:rotate(3deg);z-index:1;animation:float 6s ease-in-out infinite;animation-delay:-3s;
+    }
+    .mockup-header{
+      padding:1rem 1.25rem;border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .mockup-header h4{font-size:.95rem;font-weight:700}
+    .mockup-header .pill{
+      font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:.2rem .6rem;
+      border-radius:100px;background:var(--accent-soft);color:var(--accent);font-weight:500;
+    }
+    .mockup-body{padding:.75rem}
+    .session-item{
+      padding:.9rem;border-radius:12px;background:var(--bg);border:1px solid var(--border);margin-bottom:.5rem;
+    }
+    .session-item:last-child{margin-bottom:0}
+    .session-top{display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem}
+    .status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    .status-dot.running{background:var(--accent);box-shadow:0 0 8px var(--accent-glow);animation:dotGlow 2s ease-in-out infinite}
+    @keyframes dotGlow{0%,100%{box-shadow:0 0 4px var(--accent-glow)}50%{box-shadow:0 0 12px var(--accent-glow)}}
+    .status-dot.done{background:#4ade80}
+    .status-dot.queued{background:var(--text-muted)}
+    .session-name{font-size:.82rem;font-weight:600}
+    .session-meta{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--text-muted);margin-bottom:.5rem}
+    .session-progress{height:3px;background:var(--border);border-radius:3px;overflow:hidden}
+    .session-bar{height:100%;background:var(--accent);border-radius:3px}
+    .session-badge{
+      display:inline-flex;font-family:'JetBrains Mono',monospace;font-size:.65rem;
+      padding:.15rem .5rem;border-radius:6px;font-weight:500;
+    }
+    .session-badge.merged{background:rgba(74,222,128,.12);color:#4ade80}
+    .session-badge.waiting{background:rgba(138,135,120,.12);color:var(--text-muted)}
+
+    /* FEATURES */
+    .features{padding:120px 2rem;position:relative}
+    .features-inner{max-width:1200px;margin:0 auto}
+    .section-label{
+      font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:500;
+      letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;
+    }
+    .features h2{
+      font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;
+      line-height:1.15;margin-bottom:4rem;max-width:500px;
+    }
+    .bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .bento-card{
+      background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;
+      transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;overflow:hidden;
+    }
+    .bento-card:hover{border-color:var(--border-light);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.2)}
+    .bento-card.wide{grid-column:span 2}
+    .bento-card.full{grid-column:span 3}
+    .card-visual{margin-bottom:1.5rem;height:48px;display:flex;align-items:center}
+    .bento-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.4rem}
+    .bento-card p{font-size:.9rem;color:var(--text-muted);line-height:1.6}
+
+    /* Card visuals */
+    .prompt-mock{
+      font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--text-muted);
+      background:var(--bg);padding:.6rem 1rem;border-radius:8px;border:1px solid var(--border);
+      display:flex;align-items:center;gap:.5rem;
+    }
+    .prompt-mock .cursor{color:var(--accent);animation:blink 1s step-end infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+    .progress-dots{display:flex;gap:4px;align-items:center}
+    .progress-dots i{
+      display:block;width:8px;height:8px;border-radius:50%;background:var(--accent);
+      animation:dotPulse 1.4s ease-in-out infinite;
+    }
+    .progress-dots i:nth-child(2){animation-delay:.2s}
+    .progress-dots i:nth-child(3){animation-delay:.4s}
+    @keyframes dotPulse{0%,80%,100%{opacity:.2;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+    .wave-bars{display:flex;gap:3px;align-items:center;height:32px}
+    .wave-bars i{display:block;width:4px;border-radius:4px;background:var(--accent);animation:wave 1.2s ease-in-out infinite}
+    .wave-bars i:nth-child(1){height:12px;animation-delay:0s}
+    .wave-bars i:nth-child(2){height:20px;animation-delay:.1s}
+    .wave-bars i:nth-child(3){height:28px;animation-delay:.2s}
+    .wave-bars i:nth-child(4){height:16px;animation-delay:.3s}
+    .wave-bars i:nth-child(5){height:24px;animation-delay:.4s}
+    .wave-bars i:nth-child(6){height:10px;animation-delay:.5s}
+    .wave-bars i:nth-child(7){height:20px;animation-delay:.6s}
+    @keyframes wave{0%,100%{transform:scaleY(.5)}50%{transform:scaleY(1.2)}}
+    .check-list{display:flex;flex-direction:column;gap:.3rem}
+    .check-list span{font-family:'JetBrains Mono',monospace;font-size:.7rem;display:flex;align-items:center;gap:.4rem}
+    .check-list .check{color:#4ade80}
+    .check-list .pending-check{color:var(--text-muted)}
+    .pr-badges{display:flex;gap:.5rem}
+    .pr-badge{font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:.25rem .7rem;border-radius:6px;font-weight:500}
+    .pr-badge.open{background:rgba(167,139,250,.12);color:var(--accent)}
+    .pr-badge.merged-badge{background:rgba(74,222,128,.12);color:#4ade80}
+    .key-icons{display:flex;gap:.4rem}
+    .key-icon{
+      width:32px;height:32px;border-radius:8px;border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-muted);
+    }
+    .key-icon.active{border-color:var(--accent);color:var(--accent)}
+    .theme-dots{display:flex;gap:.5rem}
+    .theme-dot{width:24px;height:24px;border-radius:50%;border:2px solid transparent}
+    .theme-dot.active{border-color:var(--text)}
+    .device-icons{display:flex;gap:1.5rem;align-items:center}
+    .device-icons svg{color:var(--text-muted);transition:color .3s}
+    .bento-card.full:hover .device-icons svg{color:var(--text)}
+
+    /* HOW IT WORKS */
+    .how{padding:120px 2rem}
+    .how-inner{max-width:1200px;margin:0 auto}
+    .how h2{
+      font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;
+      line-height:1.15;margin-bottom:4rem;text-align:center;
+    }
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;position:relative}
+    .steps::before{
+      content:"";position:absolute;top:35px;left:15%;right:15%;height:1px;
+      background:linear-gradient(90deg,var(--border),var(--accent),var(--border));
+    }
+    .step{text-align:center;position:relative}
+    .step-num{
+      width:72px;height:72px;border-radius:50%;background:var(--surface);border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:700;
+      color:var(--accent);margin:0 auto 1.5rem;position:relative;z-index:1;
+    }
+    .step h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+    .step p{font-size:.9rem;color:var(--text-muted);line-height:1.6;max-width:280px;margin:0 auto}
+    .step code{
+      font-family:'JetBrains Mono',monospace;font-size:.78rem;
+      background:var(--surface);padding:.15rem .5rem;border-radius:4px;border:1px solid var(--border);
+    }
+
+    /* CTA */
+    .cta-section{padding:120px 2rem;text-align:center;position:relative;overflow:hidden}
+    .cta-section::before{
+      content:"";position:absolute;bottom:-20%;left:50%;transform:translateX(-50%);
+      width:800px;height:500px;
+      background:radial-gradient(ellipse,var(--accent-glow) 0%,transparent 70%);pointer-events:none;
+    }
+    .cta-section h2{
+      font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.03em;
+      line-height:1.1;margin-bottom:1rem;position:relative;
+    }
+    .cta-section h2 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--accent)}
+    .cta-section>p{font-size:1.1rem;color:var(--text-muted);margin-bottom:2.5rem;position:relative}
+    .cta-section .btn{position:relative}
+
+    /* FOOTER */
+    footer{padding:2.5rem 2rem;border-top:1px solid var(--border);text-align:center}
+    footer p{font-size:.82rem;color:var(--text-muted);line-height:1.8}
+    footer a{color:var(--text-muted);transition:color .2s}
+    footer a:hover{color:var(--text)}
+    footer a.home-hover-link,
+    footer a.home-hover-link:hover,
+    footer a.home-hover-link:focus-visible{color:inherit}
+    footer a.home-hover-link{text-decoration:none}
+    footer a.home-hover-link:hover,
+    footer a.home-hover-link:focus-visible{text-decoration:underline;text-underline-offset:2px}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal[data-delay="1"]{transition-delay:.1s}
+    .reveal[data-delay="2"]{transition-delay:.2s}
+    .reveal[data-delay="3"]{transition-delay:.3s}
+    .reveal[data-delay="4"]{transition-delay:.4s}
+    .reveal[data-delay="5"]{transition-delay:.5s}
+    .reveal[data-delay="6"]{transition-delay:.6s}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .hero-inner{grid-template-columns:1fr;text-align:center}
+      .hero-sub{margin-left:auto;margin-right:auto}
+      .hero-buttons{justify-content:center}
+      .hero-platforms{justify-content:center}
+      .mockup-wrapper{margin-top:2rem}
+      .mockup-bg-card{display:none}
+      .bento{grid-template-columns:repeat(2,1fr)}
+      .bento-card.wide{grid-column:span 2}
+      .bento-card.full{grid-column:span 2}
+      .steps{grid-template-columns:1fr;gap:2.5rem}
+      .steps::before{display:none}
+    }
+    @media(max-width:600px){
+      nav{padding:0 1rem}
+      .nav-links a:not(.nav-cta){display:none}
+      .hero{padding:90px 1.25rem 60px}
+      .hero h1{font-size:2.4rem}
+      .features{padding:80px 1.25rem}
+      .features h2{margin-bottom:2.5rem}
+      .bento{grid-template-columns:1fr}
+      .bento-card.wide,.bento-card.full{grid-column:span 1}
+      .how{padding:80px 1.25rem}
+      .cta-section{padding:80px 1.25rem}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Pievra</a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how">Get Started</a>
+    <a href="https://apps.apple.com/app/id6746287230" class="nav-cta">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download
+    </a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label reveal">Native client for Jules AI</div>
+      <h1 class="reveal" data-delay="1">Manage Jules,<br><em>from anywhere.</em></h1>
+      <p class="hero-sub reveal" data-delay="2">A platform-native client for Google's AI coding agent. Create sessions, track progress, and approve plans — right from your pocket.</p>
+      <div class="hero-buttons reveal" data-delay="3">
+        <a href="https://apps.apple.com/app/id6746287230" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Download on the App Store
+        </a>
+        <a href="#features" class="btn btn-ghost">See features</a>
+      </div>
+      <div class="hero-platforms reveal" data-delay="4">
+        <span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="1" width="14" height="22" rx="3"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+          iPhone
+        </span>
+        <span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="16" rx="3"/><line x1="12" y1="16" x2="12" y2="16.01"/></svg>
+          iPad
+        </span>
+        <span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Mac
+        </span>
+      </div>
+    </div>
+
+    <div class="mockup-wrapper reveal" data-delay="3">
+      <div class="mockup-bg-card"></div>
+      <div class="mockup">
+        <div class="mockup-header">
+          <h4>Sessions</h4>
+          <span class="pill">3 active</span>
+        </div>
+        <div class="mockup-body">
+          <div class="session-item">
+            <div class="session-top">
+              <span class="status-dot running"></span>
+              <span class="session-name">Fix authentication bug</span>
+            </div>
+            <div class="session-meta">acme/api · main</div>
+            <div class="session-progress"><div class="session-bar" style="width:78%"></div></div>
+          </div>
+          <div class="session-item">
+            <div class="session-top">
+              <span class="status-dot done"></span>
+              <span class="session-name">Add dark mode support</span>
+            </div>
+            <div class="session-meta">acme/app · feature/theme</div>
+            <span class="session-badge merged">PR #42 · Merged</span>
+          </div>
+          <div class="session-item">
+            <div class="session-top">
+              <span class="status-dot queued"></span>
+              <span class="session-name">Update API documentation</span>
+            </div>
+            <div class="session-meta">acme/docs · main</div>
+            <span class="session-badge waiting">Queued</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="features-inner">
+    <p class="section-label reveal">Features</p>
+    <h2 class="reveal" data-delay="1">Everything you need<br>to manage Jules</h2>
+    <div class="bento">
+      <div class="bento-card wide reveal" data-delay="2">
+        <div class="card-visual">
+          <div class="prompt-mock">
+            <span style="color:var(--accent)">$</span>
+            <span>Fix the login bug in auth.ts</span>
+            <span class="cursor">|</span>
+          </div>
+        </div>
+        <h3>Create Sessions</h3>
+        <p>Launch new Jules coding sessions with a prompt, pick your repository and branch, and optionally require plan approval before execution.</p>
+      </div>
+      <div class="bento-card reveal" data-delay="3">
+        <div class="card-visual">
+          <div class="progress-dots"><i></i><i></i><i></i></div>
+        </div>
+        <h3>Monitor Progress</h3>
+        <p>View real-time session status and step-by-step details as Jules works through your tasks.</p>
+      </div>
+      <div class="bento-card reveal" data-delay="2">
+        <div class="card-visual">
+          <div class="wave-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <h3>Voice Input</h3>
+        <p>Dictate your prompts using built-in speech-to-text with live waveform visualization.</p>
+      </div>
+      <div class="bento-card wide reveal" data-delay="3">
+        <div class="card-visual">
+          <div class="check-list">
+            <span><span class="check">&#10003;</span> Update user model schema</span>
+            <span><span class="check">&#10003;</span> Add migration script</span>
+            <span><span class="pending-check">&#9675;</span> Update API endpoints</span>
+          </div>
+        </div>
+        <h3>Plan Approval</h3>
+        <p>Review and approve the agent's plan before execution. Stay in full control of every change to your codebase.</p>
+      </div>
+      <div class="bento-card reveal" data-delay="2">
+        <div class="card-visual">
+          <div class="pr-badges">
+            <span class="pr-badge merged-badge">#42 Merged</span>
+            <span class="pr-badge open">#51 Open</span>
+          </div>
+        </div>
+        <h3>Pull Request Tracking</h3>
+        <p>See generated pull requests and merge status at a glance, directly from your device.</p>
+      </div>
+      <div class="bento-card reveal" data-delay="3">
+        <div class="card-visual">
+          <div class="key-icons">
+            <div class="key-icon active">K1</div>
+            <div class="key-icon">K2</div>
+            <div class="key-icon">K3</div>
+          </div>
+        </div>
+        <h3>Multi-Key Management</h3>
+        <p>Store and switch between multiple API keys, securely saved in the system Keychain.</p>
+      </div>
+      <div class="bento-card reveal" data-delay="4">
+        <div class="card-visual">
+          <div class="theme-dots">
+            <div class="theme-dot active" style="background:#a78bfa"></div>
+            <div class="theme-dot" style="background:#6c5ce7"></div>
+            <div class="theme-dot" style="background:#4ade80"></div>
+            <div class="theme-dot" style="background:#f59e0b"></div>
+            <div class="theme-dot" style="background:#ec4899"></div>
+          </div>
+        </div>
+        <h3>Customizable Themes</h3>
+        <p>Choose from multiple color themes to personalize the app and make it yours.</p>
+      </div>
+      <div class="bento-card full reveal" data-delay="2">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem">
+          <div>
+            <h3>Cross-Platform</h3>
+            <p>Runs natively on iPhone, iPad, and Mac with a responsive interface adapted to each device.</p>
+          </div>
+          <div class="device-icons">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="5" y="1" width="14" height="22" rx="3"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="16" rx="3"/><line x1="12" y1="16" x2="12" y2="16.01"/></svg>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="how-inner">
+    <p class="section-label reveal" style="text-align:center">Get Started</p>
+    <h2 class="reveal" data-delay="1">Up and running in minutes</h2>
+    <div class="steps">
+      <div class="step reveal" data-delay="2">
+        <div class="step-num">01</div>
+        <h3>Get your API key</h3>
+        <p>Generate your key at <code>jules.google.com/settings/api</code></p>
+      </div>
+      <div class="step reveal" data-delay="3">
+        <div class="step-num">02</div>
+        <h3>Enter it in Pievra</h3>
+        <p>Paste your key — it's stored securely in your system Keychain.</p>
+      </div>
+      <div class="step reveal" data-delay="4">
+        <div class="step-num">03</div>
+        <h3>Start coding</h3>
+        <p>Create sessions, monitor progress, and let Jules handle the rest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <p class="section-label reveal">Ready?</p>
+  <h2 class="reveal" data-delay="1">Take Jules<br><em>everywhere you go.</em></h2>
+  <p class="reveal" data-delay="2">Available now on iPhone, iPad, and Mac.</p>
+  <a href="https://apps.apple.com/app/id6746287230" class="btn btn-primary reveal" data-delay="3">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+    Download on the App Store
+  </a>
+</section>
+
+<footer>
+  <p>Pievra is an independent third-party client and is not affiliated with or endorsed by Google.</p>
+  <p style="margin-top:.5rem">
+    <a href="../index.html" class="home-hover-link">&copy; 2025 Pievra</a> &middot;
+    <a href="privacy.html">Privacy Policy</a> &middot;
+    <a href="terms.html">Terms of Use</a> &middot;
+    <a href="mailto:contact@asapps.fr">Support</a>
+  </p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

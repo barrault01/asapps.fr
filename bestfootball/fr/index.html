@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Bestfootball - Coupe du Monde 2026 : Scores en direct, calendrier &amp; classement</title>
+  <meta name="description" content="Bestfootball est votre compagnon Coupe du Monde 2026. Scores en direct, calendrier, classement, compositions, alertes match et compte a rebours des coups d envoi.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://asapps.fr/bestfootball/fr/">
+  <meta name="keywords" content="application Coupe du Monde 2026, scores football en direct, calendrier mondial 2026, classement, Bestfootball, app football, FIFA 2026">
+  <meta name="theme-color" content="#091018">
+  <meta property="og:title" content="Bestfootball - App compagnon Coupe du Monde 2026">
+  <meta property="og:description" content="Suivez chaque match de la Coupe du Monde 2026 en direct avec scores, calendrier, classement et notifications.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bestfootball">
+  <meta property="og:url" content="https://asapps.fr/bestfootball/fr/">
+  <meta property="og:image" content="https://asapps.fr/favicon.ico">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bestfootball - Coupe du Monde 2026">
+  <meta name="twitter:description" content="Scores en direct, calendrier, classement et alertes pour la Coupe du Monde 2026.">
+  <link rel="alternate" hreflang="en" href="../index.html">
+  <link rel="alternate" hreflang="fr" href="index.html">
+  <link rel="alternate" hreflang="x-default" href="https://asapps.fr/bestfootball/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Bestfootball - Coupe du Monde 2026",
+    "operatingSystem": "iOS",
+    "applicationCategory": "SportsApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Suivez la Coupe du Monde 2026 avec scores en direct, calendrier, classement, suivi des equipes et notifications instantanees.",
+    "downloadUrl": "https://apps.apple.com/",
+    "featureList": "Scores en direct, Fixtures, Classements, Notifications, Centre du match, Countdown"
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #091018;
+      --bg-2: #121d2a;
+      --ink: #f5f2e8;
+      --muted: #a8b4c5;
+      --line: rgba(245, 242, 232, 0.1);
+      --card: rgba(18, 29, 42, 0.82);
+      --gold: #f3c64d;
+      --mint: #73efc4;
+      --red: #ff5f6d;
+      --blue: #58a6ff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Fraunces", Georgia, serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 640px at 10% 8%, rgba(88, 166, 255, 0.18), transparent 60%),
+        radial-gradient(980px 640px at 95% 5%, rgba(115, 239, 196, 0.12), transparent 62%),
+        linear-gradient(145deg, #091018 0%, #0f1823 46%, #101d2c 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 20;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px;
+    }
+
+    .cup-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 30;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--red), var(--blue), var(--mint), var(--gold));
+      background-size: 240% 100%;
+      animation: ribbon 8s linear infinite;
+    }
+
+    @keyframes ribbon {
+      to { background-position: -240% 0; }
+    }
+
+    nav {
+      position: fixed;
+      top: 4px;
+      left: 0;
+      right: 0;
+      z-index: 25;
+      padding: 1.1rem 2rem;
+      backdrop-filter: blur(14px);
+      background: rgba(9, 16, 24, 0.6);
+      border-bottom: 1px solid transparent;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(9, 16, 24, 0.9);
+      border-color: var(--line);
+    }
+
+    .nav-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-family: "Anton", sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .badge-ball {
+      width: 1.8rem;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #fff 0%, #eef3ff 40%, #bbc7da 100%);
+      box-shadow: 0 0 0 2px rgba(9,16,24,0.7), 0 8px 18px rgba(0, 0, 0, 0.38);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.6rem;
+      align-items: center;
+      font-size: 0.84rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: #121212 !important;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 8rem 2rem 4rem;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "2026";
+      position: absolute;
+      right: -3%;
+      top: 52%;
+      transform: translateY(-50%);
+      font-family: "Anton", sans-serif;
+      font-size: clamp(12rem, 38vw, 34rem);
+      letter-spacing: 0.02em;
+      color: rgba(245, 242, 232, 0.05);
+      line-height: 1;
+      z-index: 0;
+      user-select: none;
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 1160px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3.2rem;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .hero-kicker {
+      color: var(--gold);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: "Anton", sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.1rem);
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    h1 em { color: var(--mint); font-style: normal; }
+
+    .hero p {
+      max-width: 540px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 2rem; }
+
+    .btn {
+      border-radius: 0.7rem;
+      padding: 0.85rem 1.3rem;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-primary { background: var(--ink); color: #091018; }
+    .btn-primary:hover { transform: translateY(-1px); }
+
+    .btn-ghost {
+      border: 1px solid var(--line);
+      color: var(--ink);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 1.6rem;
+      border-top: 1px solid var(--line);
+      padding-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-family: "Anton", sans-serif;
+      letter-spacing: 0.02em;
+      font-size: 1.4rem;
+    }
+
+    .hero-stat span { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    .device {
+      background: linear-gradient(180deg, rgba(13, 22, 32, 0.98), rgba(9, 14, 23, 0.9));
+      border: 1px solid var(--line);
+      border-radius: 1.8rem;
+      padding: 0.9rem;
+      box-shadow: 0 24px 54px rgba(0, 0, 0, 0.45);
+      max-width: 360px;
+      margin-inline: auto;
+    }
+
+    .screen {
+      border-radius: 1.2rem;
+      overflow: hidden;
+      background: linear-gradient(180deg, #16314f, #0d2238 55%, #132844);
+      min-height: 510px;
+      padding: 1.1rem;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 0.8rem;
+    }
+
+    .screen-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: #d4e2f7;
+    }
+
+    .fixture-card {
+      background: rgba(9, 16, 24, 0.34);
+      border: 1px solid rgba(245, 242, 232, 0.17);
+      border-radius: 1rem;
+      padding: 0.8rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .fixture-top {
+      display: flex;
+      justify-content: space-between;
+      color: #d8e6fb;
+      font-size: 0.76rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .fixture-main {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 0.5rem;
+      text-align: center;
+    }
+
+    .team-name { font-weight: 700; font-size: 0.92rem; }
+
+    .score { font-family: "Anton", sans-serif; font-size: 1.55rem; color: var(--gold); letter-spacing: 0.03em; }
+
+    .section {
+      padding: 6rem 2rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-inner { max-width: 1160px; margin: 0 auto; }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-family: "Anton", sans-serif;
+      font-size: clamp(2rem, 4.2vw, 3.1rem);
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 2.2rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    .feature {
+      background: var(--card);
+      padding: 1.5rem;
+      transition: background 0.25s ease;
+    }
+
+    .feature:hover { background: #192738; }
+
+    .feature h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      font-family: "Anton", sans-serif;
+      letter-spacing: 0.02em;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .feature p { color: var(--muted); font-size: 0.94rem; }
+
+    .shots {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .shot {
+      border-radius: 1rem;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: #132233;
+      min-height: 280px;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .shot::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(245,242,232,0.03), transparent 30%, rgba(245,242,232,0.06));
+      z-index: 1;
+    }
+
+    .shot-content {
+      position: absolute;
+      inset: 0;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 2;
+    }
+
+    .shot small {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #c8d7ea;
+    }
+
+    .shot strong {
+      font-family: "Anton", sans-serif;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .group-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.8rem;
+    }
+
+    .group {
+      border: 1px solid var(--line);
+      border-radius: 0.8rem;
+      padding: 0.9rem;
+      background: rgba(12, 20, 30, 0.8);
+    }
+
+    .group h3 {
+      font-family: "Anton", sans-serif;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--mint);
+      font-weight: 400;
+    }
+
+    .group ul { list-style: none; }
+    .group li {
+      padding: 0.32rem 0;
+      font-size: 0.92rem;
+      border-bottom: 1px dashed rgba(245,242,232,0.1);
+    }
+    .group li:last-child { border-bottom: 0; }
+
+    .faq-list { border-top: 1px solid var(--line); }
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+      padding: 1rem 0;
+    }
+
+    .faq-item h3 {
+      font-family: "Anton", sans-serif;
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+    }
+
+    .faq-item p { color: var(--muted); }
+
+    .cta {
+      text-align: center;
+      border-top: 1px solid var(--line);
+      padding: 6rem 2rem;
+      background:
+        radial-gradient(ellipse at 50% 22%, rgba(243, 198, 77, 0.14), transparent 52%),
+        linear-gradient(180deg, #101a28, #0b131d);
+    }
+
+    .cta h2 { margin-bottom: 0.8rem; }
+    .cta p { color: var(--muted); max-width: 640px; margin: 0 auto 1.4rem; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.3rem 2rem 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    footer a.home-hover-link {
+      color: inherit;
+      text-decoration: none;
+    }
+    footer a.home-hover-link:hover,
+    footer a.home-hover-link:focus-visible {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero p { margin-inline: auto; }
+      .hero-actions, .hero-stats { justify-content: center; }
+      .hero::before { font-size: clamp(10rem, 32vw, 16rem); left: 50%; right: auto; transform: translate(-50%, -50%); }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+      .shots { grid-template-columns: 1fr 1fr; }
+      .group-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      nav { padding-inline: 1rem; }
+      .nav-links { display: none; }
+      .hero, .section, .cta { padding-inline: 1rem; }
+      .grid-3, .shots, .group-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.3rem; }
+      .screen { min-height: 450px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cup-bar" aria-hidden="true"></div>
+
+  <nav>
+    <div class="nav-inner">
+      <a class="brand" href="#top"><span class="badge-ball" aria-hidden="true"></span>Bestfootball</a>
+      <ul class="nav-links">
+        <li><a href="#features">Fonctionnalites</a></li>
+        <li><a href="#screens">Ecrans</a></li>
+        <li><a href="#groups">Groupes</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="../index.html">EN</a></li>
+        <li><a class="nav-cta" href="https://apps.apple.com/">Telecharger</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div class="reveal visible">
+        <div class="hero-kicker">Route vers la Coupe du Monde 2026</div>
+        <h1>Bestfootball <em>Coupe du Monde 2026</em></h1>
+        <p>Suivez chaque match du coup d envoi jusqu a la finale. Bestfootball vous donne les scores en direct, le calendrier, le classement, les compositions et des alertes instantanees.</p>
+        <div class="hero-actions">
+          <a href="https://apps.apple.com/" class="btn btn-primary">Telecharger gratuitement</a>
+          <a href="#features" class="btn btn-ghost">Explorer les fonctionnalites</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>48</strong><span>Equipes</span></div>
+          <div class="hero-stat"><strong>104</strong><span>Matches</span></div>
+          <div class="hero-stat"><strong>4.9</strong><span>Note estimee</span></div>
+        </div>
+      </div>
+
+      <div class="device reveal">
+        <div class="screen">
+          <div class="screen-header">
+            <span>Centre du match</span>
+            <span>LIVE</span>
+          </div>
+
+          <div class="fixture-card">
+            <div class="fixture-top">
+              <span>Demi-finale</span>
+              <span>82'</span>
+            </div>
+            <div class="fixture-main">
+              <div class="team-name">Spain</div>
+              <div class="score">2 - 1</div>
+              <div class="team-name">Brazil</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="fixture-card">
+              <div class="fixture-top">
+                <span>Groupe A</span>
+                <span>Demain</span>
+              </div>
+              <div class="fixture-main">
+                <div class="team-name">USA</div>
+                <div class="score">vs</div>
+                <div class="team-name">Japan</div>
+              </div>
+            </div>
+            <div class="fixture-card">
+              <div class="fixture-top">
+                <span>Groupe D</span>
+                <span>20:00</span>
+              </div>
+              <div class="fixture-main">
+                <div class="team-name">France</div>
+                <div class="score">vs</div>
+                <div class="team-name">Argentina</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="section-inner">
+      <div class="eyebrow reveal">Fonctionnalites</div>
+      <h2 class="reveal">Tout pour le jour de match</h2>
+      <p class="section-intro reveal">Concu pour le mode tournoi : mises a jour rapides, calendrier clair et acces direct aux matchs qui vous interessent.</p>
+      <div class="grid-3">
+        <article class="feature reveal"><h3>Scores en direct</h3><p>Mises a jour seconde par seconde, cartons, remplacements et evenements de la timeline.</p></article>
+        <article class="feature reveal"><h3>Calendrier des matchs</h3><p>Heures de coup d envoi locales pour toutes les phases de groupes et a elimination directe.</p></article>
+        <article class="feature reveal"><h3>Classements</h3><p>Regles de departage automatiques avec difference de buts et indicateurs fair-play.</p></article>
+        <article class="feature reveal"><h3>Compositions</h3><p>Onze de depart, bancs et formations des qu ils sont officiels.</p></article>
+        <article class="feature reveal"><h3>Alertes instantanees</h3><p>Personnalisez les notifications pour buts, coup d envoi, mi-temps et fin de match.</p></article>
+        <article class="feature reveal"><h3>Compte a rebours match</h3><p>Ne manquez jamais un coup d envoi avec les widgets de compte a rebours du prochain match.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="screens" class="section">
+    <div class="section-inner">
+      <div class="eyebrow reveal">Screens</div>
+      <h2 class="reveal">Concu pour le rythme du tournoi</h2>
+      <p class="section-intro reveal">Lecture rapide, hierarchie forte, sans surcharge. Pense pour l intensite d un mois de Coupe du Monde.</p>
+      <div class="shots">
+        <div class="shot reveal"><div class="shot-content"><small>Home</small><strong>Tableau du jour</strong></div></div>
+        <div class="shot reveal"><div class="shot-content"><small>Matches</small><strong>Calendrier complet</strong></div></div>
+        <div class="shot reveal"><div class="shot-content"><small>Tables</small><strong>Group Classements</strong></div></div>
+        <div class="shot reveal"><div class="shot-content"><small>Equipes</small><strong>Suivez votre nation</strong></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="groups" class="section">
+    <div class="section-inner">
+      <div class="eyebrow reveal">World Cup 2026</div>
+      <h2 class="reveal">Suivez chaque groupe</h2>
+      <p class="section-intro reveal">Suivez toutes les equipes tout au long du tournoi en Amerique du Nord, de la phase de groupes jusqu a la finale.</p>
+      <div class="group-grid">
+        <div class="group reveal"><h3>Group A</h3><ul><li>Mexico</li><li>Netherlands</li><li>Senegal</li><li>Canada</li></ul></div>
+        <div class="group reveal"><h3>Group B</h3><ul><li>USA</li><li>Uruguay</li><li>South Korea</li><li>Poland</li></ul></div>
+        <div class="group reveal"><h3>Group C</h3><ul><li>Argentina</li><li>Denmark</li><li>Morocco</li><li>Australia</li></ul></div>
+        <div class="group reveal"><h3>Group D</h3><ul><li>France</li><li>Japan</li><li>Colombia</li><li>Nigeria</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="section-inner">
+      <div class="eyebrow reveal">FAQ</div>
+      <h2 class="reveal">Questions frequentes</h2>
+      <div class="faq-list">
+        <article class="faq-item reveal">
+          <h3>Bestfootball est-il gratuit ?</h3>
+          <p>Oui. Bestfootball est gratuit et inclut les scores en direct, le calendrier, le classement et les alertes.</p>
+        </article>
+        <article class="faq-item reveal">
+          <h3>Puis-je suivre une seule equipe ?</h3>
+          <p>Oui. Selectionnez votre equipe nationale pour recevoir des notifications ciblees et un acces rapide aux matchs concernes.</p>
+        </article>
+        <article class="faq-item reveal">
+          <h3>Fonctionne-t-elle pendant les matchs en direct ?</h3>
+          <p>Oui. L application est concue pour le suivi en temps reel avec des mises a jour pendant tout le match.</p>
+        </article>
+        <article class="faq-item reveal">
+          <h3>Quels appareils sont compatibles ?</h3>
+          <p>Bestfootball est optimise pour iPhone et iPad, avec des widgets d ecran verrouille sur les versions recentes d iOS.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2 class="reveal">Pret pour la Coupe du Monde 2026 ?</h2>
+    <p class="reveal">Installez Bestfootball et gardez chaque groupe, chaque phase finale et chaque coup de sifflet final dans votre poche.</p>
+    <a href="https://apps.apple.com/" class="btn btn-primary reveal">Telecharger sur l App Store</a>
+  </section>
+
+  <footer>
+    <a href="../../index.html" class="home-hover-link">&copy; 2026 Bestfootball</a>
+    <span>App compagnon Coupe du Monde</span>
+  </footer>
+
+  <script>
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 54);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      }
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>

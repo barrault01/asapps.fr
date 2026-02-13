@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Privacy Policy - Pievra</title>
+  <meta name="description" content="Privacy Policy for Pievra - Jules Connect app.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://asapps.fr/julesconnector/privacy.html">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0a0a0f;
+      --surface:#12121a;
+      --border:#1e1e2e;
+      --text:#e4e4ed;
+      --text-secondary:#8888a0;
+      --accent:#6c5ce7;
+      --accent-glow:#6c5ce740;
+      --gradient-start:#6c5ce7;
+      --gradient-end:#a78bfa;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      padding:1rem 2rem;
+      background:rgba(10,10,15,.8);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .logo{font-size:1.25rem;font-weight:700;letter-spacing:-.02em}
+    .logo a{text-decoration:none}
+    .logo span{
+      background:linear-gradient(135deg,var(--gradient-start),var(--gradient-end));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    nav a{color:var(--text-secondary);text-decoration:none;font-size:.9rem;transition:color .2s}
+    nav a:hover{color:var(--text)}
+    .content{
+      max-width:740px;margin:0 auto;
+      padding:8rem 2rem 4rem;
+    }
+    .content h1{
+      font-size:clamp(2rem,4vw,2.8rem);font-weight:800;
+      letter-spacing:-.03em;line-height:1.2;
+      margin-bottom:.5rem;
+    }
+    .content h1 em{
+      font-style:normal;
+      background:linear-gradient(135deg,var(--gradient-start),var(--gradient-end));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .last-updated{color:var(--text-secondary);font-size:.9rem;margin-bottom:3rem}
+    .content h2{
+      font-size:1.3rem;font-weight:700;margin-top:2.5rem;margin-bottom:.75rem;
+      letter-spacing:-.01em;
+    }
+    .content p{color:var(--text-secondary);margin-bottom:1rem;font-size:.95rem}
+    .content ul{color:var(--text-secondary);margin-bottom:1rem;padding-left:1.5rem;font-size:.95rem}
+    .content li{margin-bottom:.4rem}
+    .content strong{color:var(--text);font-weight:600}
+    .content a{color:var(--accent);text-decoration:none}
+    .content a:hover{text-decoration:underline}
+    .card{
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:16px;padding:1.5rem;margin:1.5rem 0;
+    }
+    .card p{margin-bottom:0}
+    footer{
+      max-width:740px;margin:0 auto;
+      padding:2rem;text-align:center;
+      border-top:1px solid var(--border);
+      color:var(--text-secondary);font-size:.85rem;
+    }
+    footer a{color:var(--text-secondary);text-decoration:none}
+    footer a:hover{color:var(--text)}
+    @media(max-width:640px){
+      nav{padding:.75rem 1rem}
+      .content{padding:6rem 1.25rem 3rem}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href="index.html"><span>Pievra</span></a></div>
+  <div style="display:flex;gap:1.5rem;align-items:center">
+    <a href="index.html">Home</a>
+    <a href="terms.html">Terms</a>
+  </div>
+</nav>
+
+<main class="content">
+  <h1><em>Privacy</em> Policy</h1>
+  <p class="last-updated">Last updated: February 10, 2026</p>
+
+  <p>Pievra ("the App") is developed by Antoine Barrault. This Privacy Policy explains how the App handles your information. The short version: <strong>we collect as little data as possible and nothing leaves your device</strong>.</p>
+
+  <h2>Information We Do Not Collect</h2>
+  <p>The App does not collect, store, or transmit any personal data to our servers. We do not operate any backend infrastructure. Specifically:</p>
+  <ul>
+    <li>No analytics or tracking SDKs</li>
+    <li>No advertising frameworks</li>
+    <li>No crash reporting sent to us</li>
+    <li>No user accounts or registration</li>
+  </ul>
+
+  <h2>API Keys</h2>
+  <p>The App requires a Jules API key to function. Your API key is stored <strong>locally on your device</strong> in the system Keychain, which is encrypted by the operating system. Your API key is never sent to any server other than the official Jules API (<strong>jules.google.com</strong>) to perform the actions you request.</p>
+
+  <h2>Communication with Third-Party Services</h2>
+  <p>When you use the App, it communicates directly with Google's Jules API on your behalf. This communication is:</p>
+  <ul>
+    <li>Initiated only by your explicit actions (creating sessions, fetching status, approving plans)</li>
+    <li>Sent directly from your device to Google's servers</li>
+    <li>Authenticated using the API key you provide</li>
+  </ul>
+  <p>We have no access to the data exchanged between your device and Google's Jules API. Please refer to <strong>Google's privacy policy</strong> for information about how Google handles your data.</p>
+
+  <h2>Voice Input</h2>
+  <p>The App offers speech-to-text functionality for dictating prompts. Voice recognition is performed <strong>on-device</strong> using Apple's Speech framework. Audio data is not recorded, stored, or transmitted to our servers.</p>
+
+  <h2>Local Storage</h2>
+  <p>The App stores the following data locally on your device:</p>
+  <ul>
+    <li>API keys (in the encrypted system Keychain)</li>
+    <li>Your theme and display preferences</li>
+    <li>Cached session data for offline viewing</li>
+  </ul>
+  <p>All local data can be removed by deleting the App from your device.</p>
+
+  <h2>Children's Privacy</h2>
+  <p>The App is not directed at children under the age of 13. We do not knowingly collect any information from children.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated revision date.</p>
+
+  <h2>Contact</h2>
+  <div class="card">
+    <p>If you have questions about this Privacy Policy, please contact us at <a href="mailto:contact@asapps.fr">contact@asapps.fr</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 Pievra &middot;
+    <a href="index.html">Home</a> &middot;
+    <a href="terms.html">Terms of Use</a>
+  </p>
+</footer>
+
+</body>
+</html>

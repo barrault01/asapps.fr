@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Antoine Barrault</title>
+  <meta name="description" content="Technical articles about iOS development, Swift, SwiftUI, and mobile app engineering by Antoine Barrault.">
+  <meta property="og:title" content="Blog — Antoine Barrault">
+  <meta property="og:description" content="Writing about mobile apps, iOS development, and Swift.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function(){var t=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'))})();
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__logo">AB</a>
+      <div class="nav__links">
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="apps.html" class="nav__link">Apps</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="work.html" class="nav__link">Work</a>
+        <a href="blog.html" class="nav__link">Blog</a>
+      </div>
+      <div class="nav__right">
+        <button class="nav__theme-toggle" aria-label="Toggle theme">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav__hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__mobile-menu">
+      <a href="index.html" class="nav__mobile-link">Home</a>
+      <a href="apps.html" class="nav__mobile-link">Apps</a>
+      <a href="about.html" class="nav__mobile-link">About</a>
+      <a href="work.html" class="nav__mobile-link">Work</a>
+      <a href="blog.html" class="nav__mobile-link">Blog</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="page-header">
+    <div class="container--narrow">
+      <h1 class="page-header__title">Writing about<br>mobile <em>apps</em></h1>
+      <p class="page-header__desc">Technical articles about iOS development, Swift, SwiftUI, and the mobile ecosystem.</p>
+    </div>
+  </section>
+
+  <!-- Blog Posts -->
+  <section class="section--sm">
+    <div class="container--narrow">
+
+      <!-- Post 1: Non-Breaking Space in Swift -->
+      <details class="blog-post reveal">
+        <summary>
+          <div class="blog-post__top">
+            <div class="blog-post__meta">
+              <span class="tag">Swift</span>
+              <span class="date">Nov 6, 2024</span>
+            </div>
+            <svg class="blog-post__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <h2 class="blog-post__title">Using non-breaking space in Swift or how to prevent an automatic line break</h2>
+          <p class="blog-post__desc">If you want a better control in line breaking inside UILabel or UITextView you can use a no-break space (NBSP).</p>
+        </summary>
+        <div class="blog-post__body prose">
+          <p>If you want a better control in line breaking inside UILabel or UITextView you can use a no-break space that you may also know as non-breakable space (NBSP). In Swift, this is a special character and it is shown like this:</p>
+          <p><code>\u{00a0}</code></p>
+          <p>So let's imagine that you have for example a US domestic phone number like (555) 123&ndash;4567 and you have to display it inside a UILabel along with a text.</p>
+
+          <div class="code-block">
+            <div class="code-block__header"><span class="code-block__lang">Swift &mdash; Without Non-Breaking Space</span></div>
+            <pre><code>import UIKit
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var label: UILabel!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Without non-breaking space - phone number may break across lines
+        label.text = "Please call us at (555) 123-4567 for more information"
+    }
+}</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block__header"><span class="code-block__lang">Swift &mdash; With Non-Breaking Space</span></div>
+            <pre><code>import UIKit
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var label: UILabel!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // With non-breaking space - keeps phone number together
+        let phoneNumber = "(555)\u{00a0}123–4567"
+        label.text = "Please call us at \(phoneNumber) for more information"
+    }
+}</code></pre>
+          </div>
+
+          <h2>Common Use Cases</h2>
+          <p>Non-breaking spaces are particularly useful for:</p>
+          <ul>
+            <li><strong>Phone numbers</strong>: Keep area codes and numbers together</li>
+            <li><strong>Measurements</strong>: Keep numbers with their units (100 kg, 50 mph)</li>
+            <li><strong>Names with titles</strong>: Keep titles with names (Dr. Smith, Mr. Johnson)</li>
+            <li><strong>Currency</strong>: Keep currency symbols with amounts ($29.99, &euro;15.00)</li>
+            <li><strong>Time formats</strong>: Keep time components together (3:30 PM)</li>
+          </ul>
+          <p>The non-breaking space character (<code>\u{00a0}</code>) ensures that text elements that should stay together won't be separated by automatic line breaks, giving you better control over text layout in your iOS applications.</p>
+        </div>
+      </details>
+
+      <!-- Post 2: Symbolicate Crash Log -->
+      <details class="blog-post reveal">
+        <summary>
+          <div class="blog-post__top">
+            <div class="blog-post__meta">
+              <span class="tag">iOS Development</span>
+              <span class="date">Jun 12, 2023</span>
+            </div>
+            <svg class="blog-post__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <h2 class="blog-post__title">Symbolicate a line from a raw crash log on iOS</h2>
+          <p class="blog-post__desc">When your app crashes, it is never a good thing, but hopefully, you have ways to understand what happens. Learn how to symbolicate crash logs manually.</p>
+        </summary>
+        <div class="blog-post__body prose">
+          <p>When your app crashes, it is never a good thing, but hopefully, you have ways to understand what happens. If you upload your app directly through Xcode you can find the crashes directly from the organizer window, symbolicate it and even open the line that crashed inside your project. You can also use some crash reporting tools that will do all the work for you.</p>
+          <p>But sometimes, especially if you work on an SDK, you may receive a crash log by email or sometimes only just the line where the crash happens.</p>
+
+          <h2>Raw Crash Log Example</h2>
+          <div class="code-block">
+            <div class="code-block__header"><span class="code-block__lang">Crash Log</span></div>
+            <pre><code>Crashed: com.apple.main-thread
+0 libswiftCore.dylib 0x3dcd08 swift_isUniquelyReferenced_nonNull_native + 38
+1 YourSDK 0x63974 _hidden#10814_ + 36 (__hidden#11065_:36)
+2 YourSDK 0x72394 _hidden#10850_ + 80 (__hidden#11065_:80)
+3 YourSDK 0x1834c _hidden#10852_ + 4395545212 (__hidden#593_:4395545212)</code></pre>
+          </div>
+
+          <h2>Symbolicating the Crash</h2>
+          <p>Here the crash is caused by the SDK, but right now it is impossible to know what line of the code generated the crash. There are 3 lines that are really important for us to decrypt: 1, 2, and 3. To symbolicate these lines we need the <code>.dSYM</code> of our SDK. Hopefully when you archive your project Xcode generates the <code>.dSYM</code> file for you.</p>
+          <p>We are going to use the following command line <code>atos -arch arm64 -o</code> followed by the path of the DWARF file contained inside the <code>.dSYM</code> archive:</p>
+
+          <div class="code-block">
+            <div class="code-block__header"><span class="code-block__lang">Bash</span></div>
+            <pre><code>atos -arch arm64 -o YOURSDK.framework.dSYM/Contents/Resources/DWARF/YOURSDK 0x63974</code></pre>
+          </div>
+
+          <p>The output may look like this:</p>
+          <blockquote>YourClassThatCrash.theMethodThatCrash() (in YOURSDK) (YourClassThatCrash.swift:74)</blockquote>
+          <p>With this it should be much easier to find the crash, correct it and make your users happy.</p>
+        </div>
+      </details>
+
+      <!-- Post 3: WWDC 2022 AdTech -->
+      <details class="blog-post reveal">
+        <summary>
+          <div class="blog-post__top">
+            <div class="blog-post__meta">
+              <span class="tag">AdTech</span>
+              <span class="date">Sep 5, 2022</span>
+            </div>
+            <svg class="blog-post__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <h2 class="blog-post__title">What's new for AdTech announced during the WWDC 2022</h2>
+          <p class="blog-post__desc">What Apple presented about AdTech: SKAdNetwork 4.0, Ads with SharePlay, Pasteboard access, Location attribution&hellip;</p>
+        </summary>
+        <div class="blog-post__body prose">
+          <p>Apple released some videos relevant to the Ad Tech industry at WWDC 2022. At Teads, we take very seriously the fact of being up to date with new technologies. Here's a summary of the key announcements.</p>
+
+          <h2>New Platform Updates</h2>
+          <p>With iOS 16, there are new features about privacy and security:</p>
+          <h3>Location Attribution</h3>
+          <p>The name of the app using the user location will now appear in conjunction with the location symbol system-wide &mdash; if an app uses your location, you will know which app, even outside the app.</p>
+          <h3>Pasteboard Access</h3>
+          <p>To access the shared clipboard or simply paste the content from another app, you now have to ask permission. Apple offers controls that allow the user to paste the content of the clipboard with a tap without requiring a full permission prompt.</p>
+          <h3>Device Name Entitlement</h3>
+          <p>Before iOS 16, an app could access the device name (e.g., "Antoine's iPhone"). Now <code>UIDevice.name</code> will return just the model name (iPhone / iPad). You can still access the user-assigned name using a special entitlement, but sharing it with third parties is not permitted.</p>
+
+          <h2>App Tracking Transparency</h2>
+          <p>For Apple, <em>privacy is a fundamental human right.</em> Tracking is the fact of linking user or device data collected inside your app with data collected from others (apps, websites, offline data) for targeting ads or advertising measurement. If the user denies ATT, you can still gather information for internal use but cannot share it with third parties.</p>
+
+          <h2>SKAdNetwork 4.0</h2>
+          <p>SKAdNetwork is Apple's privacy-preserving ad-attribution system. Version 4.0 introduces:</p>
+          <h3>Crowd Anonymity</h3>
+          <p>A method to pass information to the ad network depending on the number of installations. If the app has few installations the attribution data sent will be limited. With more installations, more data will be sent. There are 3 levels: Low, Medium, and High.</p>
+          <h3>New Attribution Values</h3>
+          <p>The <strong>source identifier</strong> replaces the campaign field and expands from two to four digits. The <strong>conversion value</strong> is split into a <strong>fine-grained value</strong> (6-bit, 0-63) and a <strong>coarse-grained value</strong> (low, medium, high). Which value is sent depends on the crowd anonymity level.</p>
+
+          <div class="code-block">
+            <div class="code-block__header"><span class="code-block__lang">Swift</span></div>
+            <pre><code>// Conversion value split
+enum CoarseGrainedValue {
+    case low
+    case medium
+    case high
+}
+
+// Fine-grained value: 6-bit value (0-63)
+let fineGrainedValue: Int = 42
+
+// Only one value is sent based on crowd anonymity level</code></pre>
+          </div>
+
+          <h3>Web Attribution</h3>
+          <p>It is now possible to use SKAdNetwork for ads on the Web (Safari only) for ads that advertise an App Store page.</p>
+
+          <h2>Apple's Privacy Pillars</h2>
+          <ul>
+            <li><strong>Data minimization</strong> &mdash; use only the data you need</li>
+            <li><strong>On-device processing</strong> &mdash; do not send sensitive data to your server</li>
+            <li><strong>Transparency and control</strong> &mdash; explain what data you are using</li>
+            <li><strong>Security protections</strong> &mdash; make sure the data transiting is protected</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- Post 4: Dark Mode iOS -->
+      <details class="blog-post reveal">
+        <summary>
+          <div class="blog-post__top">
+            <div class="blog-post__meta">
+              <span class="tag">iOS Development</span>
+              <span class="date">Nov 11, 2019</span>
+            </div>
+            <svg class="blog-post__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <h2 class="blog-post__title">Adding Dark Mode to your iOS app to make your app bright</h2>
+          <p class="blog-post__desc">With iOS 13 Apple added a dark mode to its operating system. Learn how to implement it in your app.</p>
+        </summary>
+        <div class="blog-post__body prose">
+          <p>With iOS 13 Apple added a dark mode to its operating system. Almost two months after the launch there are only few apps that already implement it. I will try to show you how you can implement it in your app and make your users happiest.</p>
+
+          <h2>Using Apple Dark Mode Compatible Colors</h2>
+          <p>Apple shipped basic system colors with iOS 13. Instead of <code>UIColor.blue</code>, you can use <code>UIColor.systemBlue</code> that gives you a different blue on light and dark mode without any effort.</p>
+          <div class="code-block">
+            <div class="code-block__header"><span class="code-block__lang">Swift</span></div>
+            <pre><code>if #available(iOS 13, *) {
+    view.backgroundColor = .systemBlue
+} else {
+    view.backgroundColor = .blue
+}</code></pre>
+          </div>
+          <p>Two other useful colors: <code>UIColor.label</code> (black on light, white on dark) and <code>UIColor.systemBackground</code> (white on light, black on dark).</p>
+
+          <h2>Creating Custom Colors in Code</h2>
+          <p>With iOS 13, Apple added <code>initWithDynamicProvider</code> for UIColor, which lets you access the current traitCollection and know if the user is using dark mode.</p>
+
+          <h3>Creating the AppColor Protocol</h3>
+          <div class="code-block">
+            <div class="code-block__header"><span class="code-block__lang">Swift</span></div>
+            <pre><code>protocol AppColor {
+    var light: UIColor { get }
+    var dark: UIColor { get }
+    var fallbackColorBeforeiOS13: UIColor { get }
+    func color() -> UIColor
+}
+
+extension AppColor {
+    func color() -> UIColor {
+        if #available(iOS 13, *) {
+            return UIColor.init { (trait) -> UIColor in
+                return trait.userInterfaceStyle == .dark ? self.dark : self.light
+            }
+        }
+        return self.fallbackColorBeforeiOS13
+    }
+}</code></pre>
+          </div>
+
+          <h3>Creating an Enum of AppColors</h3>
+          <div class="code-block">
+            <div class="code-block__header"><span class="code-block__lang">Swift</span></div>
+            <pre><code>enum CustomColors: AppColor {
+    case primary, secondary
+
+    var light: UIColor {
+        switch self {
+        case .primary: return UIColor(red: 0, green: 0.8, blue: 0.69, alpha: 1)
+        case .secondary: return UIColor(red: 219/255, green: 230/255, blue: 228/255, alpha: 1.0)
+        }
+    }
+
+    var dark: UIColor {
+        switch self {
+        case .primary: return light
+        case .secondary: return UIColor(red: 0, green: 205/255, blue: 177/255, alpha: 0.3)
+        }
+    }
+
+    var fallbackColorBeforeiOS13: UIColor {
+       return light
+    }
+}</code></pre>
+          </div>
+
+          <h2>LaunchScreen &amp; Images</h2>
+          <p>For the launch screen, create a new color set in your assets catalog and enable dark mode appearance. For images, the process is the same: enable dark mode on the image asset and provide dark appearance variants. Your app will automatically load the correct variant based on the user's appearance setting.</p>
+
+          <blockquote>Apple made it really easy for developers to implement dark mode, so we should &mdash; if we care about our users.</blockquote>
+        </div>
+      </details>
+
+      <!-- Post 5: SwiftUI Countdown Timer -->
+      <details class="blog-post reveal">
+        <summary>
+          <div class="blog-post__top">
+            <div class="blog-post__meta">
+              <span class="tag">SwiftUI</span>
+              <span class="date">Jun 4, 2019</span>
+            </div>
+            <svg class="blog-post__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <h2 class="blog-post__title">How to make a simple Countdown Timer with SwiftUI</h2>
+          <p class="blog-post__desc">Step-by-step instructions on how to build a countdown timer using the SwiftUI framework.</p>
+        </summary>
+        <div class="blog-post__body prose">
+          <p>Apple launched SwiftUI, a framework that allows us to make app interfaces in a 100% swifty way. Here's how to make a countdown timer.</p>
+
+          <h2>Pre-Requirements</h2>
+          <p>To start with SwiftUI, download the latest build of Xcode 11 and macOS Catalina 10.15. SwiftUI is only available on iOS 13, macOS 10.15, watchOS 6 and iPadOS 13.</p>
+
+          <h2>Making the Timer Logic</h2>
+          <p>To refresh our interface every second, we use a timer and declare a date for our countdown:</p>
+          <div class="code-block">
+            <div class="code-block__header"><span class="code-block__lang">Swift</span></div>
+            <pre><code>import SwiftUI
+
+struct ContentView: View {
+    @State var date = Date()
+    let referenceDate = Date()
+
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
+    var body: some View {
+        Text("Hello World")
+            .onReceive(timer) { input in
+                date = input
+            }
+    }
+}</code></pre>
+          </div>
+          <p>Note here the <code>@State</code> recreates our interface every time the date is updated.</p>
+
+          <h2>Adding Countdown Logic</h2>
+          <div class="code-block">
+            <div class="code-block__header"><span class="code-block__lang">Swift</span></div>
+            <pre><code>func countDownString(from referenceDate: Date, until date: Date) -> String {
+    let calendar = Calendar(identifier: .gregorian)
+    let components = calendar.dateComponents([.day, .hour, .minute, .second],
+                                             from: referenceDate,
+                                             to: date)
+
+    return String(format: "%02d:%02d:%02d:%02d",
+                  components.day ?? 0,
+                  components.hour ?? 0,
+                  components.minute ?? 0,
+                  components.second ?? 0)
+}</code></pre>
+          </div>
+
+          <h2>The Complete Code</h2>
+          <div class="code-block">
+            <div class="code-block__header"><span class="code-block__lang">Swift</span></div>
+            <pre><code>import SwiftUI
+
+struct ContentView: View {
+    @State var date = Date()
+    let referenceDate = Date()
+
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
+    var body: some View {
+        VStack {
+            Text("Countdown Timer")
+                .font(.largeTitle)
+                .padding()
+
+            Text(countDownString(from: referenceDate, until: date))
+                .font(.system(size: 40, design: .monospaced))
+                .padding()
+                .onReceive(timer) { input in
+                    date = input
+                }
+                .onAppear(perform: {
+                    date = Date()
+                })
+        }
+    }
+
+    func countDownString(from referenceDate: Date, until date: Date) -> String {
+        let calendar = Calendar(identifier: .gregorian)
+        let components = calendar.dateComponents([.day, .hour, .minute, .second],
+                                                 from: referenceDate,
+                                                 to: date)
+
+        return String(format: "%02d:%02d:%02d:%02d",
+                      components.day ?? 0,
+                      components.hour ?? 0,
+                      components.minute ?? 0,
+                      components.second ?? 0)
+    }
+}</code></pre>
+          </div>
+          <p>This creates a simple countdown timer that updates every second using SwiftUI's <code>@State</code> property wrapper and the <code>Timer.publish</code> method.</p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner container">
+      <p class="footer__copy">&copy; 2025 Antoine Barrault</p>
+      <div class="footer__links">
+        <a href="https://github.com/barrault01" target="_blank" rel="noopener" class="footer__link">GitHub</a>
+        <a href="https://www.linkedin.com/in/ant1/" target="_blank" rel="noopener" class="footer__link">LinkedIn</a>
+        <a href="https://x.com/_ant_one" target="_blank" rel="noopener" class="footer__link">X</a>
+        <a href="https://medium.com/@ant_one" target="_blank" rel="noopener" class="footer__link">Medium</a>
+        <a href="mailto:antoine@asapps.fr" class="footer__link">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
