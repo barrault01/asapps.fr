@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Localizer &mdash; Visual .xcstrings Editor for iOS &amp; macOS</title>
+  <meta name="description" content="Edit, review, and manage Xcode string catalogs (.xcstrings) visually. Swipe-review translations, track progress, and create GitHub PRs — available on the App Store for iPhone, iPad, and Mac.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://asapps.fr/localizer/">
+  <meta name="keywords" content="xcstrings,xcode,localization,translation,ios,macos,string catalog,i18n,developer tools,github,pull request">
+  <meta property="og:title" content="Localizer &mdash; Visual .xcstrings Editor">
+  <meta property="og:description" content="Edit and review Xcode string catalogs visually on iPhone, iPad, and Mac.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://asapps.fr/localizer/">
+  <meta property="og:image" content="https://asapps.fr/localizer/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,300;1,9..144,400;1,9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --cream:#faf6f1;--warm:#f3ede5;--blush:#f7e8e8;--blush-deep:#e8c4c4;
+      --rose:#c97b8b;--rose-deep:#a85d6f;--mauve:#8b6578;
+      --ink:#2a1f24;--ink-light:#5a4a50;--ink-muted:#9a8a90;
+      --peach:#f0c4a8;--sage:#b8c4a8;
+      --r:clamp(1rem,2vw,1.5rem);
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);
+      line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+      font-weight:400;
+    }
+    h1,h2,h3{font-family:'Fraunces',serif;font-weight:700;line-height:1.15;letter-spacing:-.02em}
+
+    /* Grain overlay */
+    body::after{
+      content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.035;
+      background:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size:200px 200px;
+    }
+
+    /* NAV */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem var(--r);
+      display:flex;align-items:center;justify-content:space-between;
+      transition:background .3s,backdrop-filter .3s;
+    }
+    nav.scrolled{background:rgba(250,246,241,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(0,0,0,.05)}
+    .nav-logo{
+      font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;color:var(--ink);
+      display:flex;align-items:center;gap:.5rem;
+    }
+    .nav-logo .globe{
+      width:32px;height:32px;border-radius:8px;object-fit:cover;object-position:center 40%;
+    }
+    .nav-right{display:flex;align-items:center;gap:2rem}
+    .nav-right a{font-size:.88rem;font-weight:500;color:var(--ink-muted);transition:color .2s}
+    .nav-right a:hover{color:var(--ink)}
+    .store-btn{
+      display:inline-flex;align-items:center;gap:.45rem;padding:.55rem 1.2rem;border-radius:100px;
+      background:var(--ink);color:var(--cream);font-size:.85rem;font-weight:500;
+      transition:transform .2s,box-shadow .2s;border:none;cursor:pointer;
+    }
+    .store-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(42,31,36,.2)}
+    .store-btn svg{width:16px;height:16px}
+
+    /* HERO */
+    .hero{
+      min-height:100vh;display:flex;align-items:center;padding:120px var(--r) 80px;
+      position:relative;
+    }
+    .hero-inner{
+      max-width:1200px;margin:0 auto;width:100%;
+      display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:center;
+    }
+    .hero-tag{
+      display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--rose);background:var(--blush);padding:.45rem 1rem;border-radius:100px;margin-bottom:2rem;
+    }
+    .hero h1{
+      font-size:clamp(3rem,6vw,5rem);letter-spacing:-.04em;margin-bottom:1.5rem;
+    }
+    .hero h1 em{
+      font-style:italic;font-weight:300;color:var(--rose);
+    }
+    .hero-desc{
+      font-size:1.1rem;line-height:1.75;color:var(--ink-light);max-width:480px;margin-bottom:2.5rem;
+    }
+    .hero-actions{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:3rem}
+    .btn-dark{
+      display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 2rem;border-radius:100px;
+      background:var(--ink);color:var(--cream);font-family:'Inter',sans-serif;font-size:.95rem;font-weight:500;
+      border:none;cursor:pointer;transition:all .25s;
+    }
+    .btn-dark:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(42,31,36,.18)}
+    .btn-dark svg{width:18px;height:18px}
+    .btn-subtle{
+      font-size:.92rem;font-weight:500;color:var(--ink-muted);display:inline-flex;align-items:center;gap:.4rem;
+      padding:.5rem 0;border-bottom:1px solid transparent;transition:all .2s;
+    }
+    .btn-subtle:hover{color:var(--ink);border-bottom-color:var(--ink)}
+    .platforms{display:flex;gap:2rem;font-size:.82rem;color:var(--ink-muted);font-weight:500}
+    .platforms span{display:flex;align-items:center;gap:.35rem}
+    .platforms svg{width:14px;height:14px;opacity:.5}
+
+    /* PHONE MOCKUP */
+    .phone-wrap{position:relative;display:flex;justify-content:center;align-items:center}
+    .phone{
+      width:280px;border-radius:36px;overflow:hidden;position:relative;z-index:2;
+      background:var(--warm);border:1px solid rgba(0,0,0,.08);
+      box-shadow:0 40px 80px rgba(42,31,36,.12),0 0 0 1px rgba(0,0,0,.04);
+    }
+    .phone-notch{
+      width:120px;height:28px;background:var(--cream);border-radius:0 0 16px 16px;margin:0 auto;
+    }
+    .phone-screen{padding:.75rem}
+    .phone .p-header{
+      display:flex;align-items:center;justify-content:space-between;padding:.5rem .5rem .75rem;
+    }
+    .phone .p-header h4{font-family:'Fraunces',serif;font-size:1rem;font-weight:700}
+    .phone .p-badge{
+      font-size:.6rem;font-weight:600;padding:.2rem .55rem;border-radius:100px;
+      background:var(--blush);color:var(--rose);
+    }
+    .p-lang{
+      display:flex;align-items:center;gap:.6rem;padding:.65rem .7rem;
+      background:white;border-radius:14px;margin-bottom:.45rem;
+      border:1px solid rgba(0,0,0,.04);
+    }
+    .p-flag{font-size:1.1rem}
+    .p-info{flex:1}
+    .p-name{font-size:.78rem;font-weight:600;display:block;color:var(--ink)}
+    .p-sub{font-size:.62rem;color:var(--ink-muted)}
+    .p-bar{height:3px;background:var(--warm);border-radius:3px;margin-top:.3rem;overflow:hidden}
+    .p-fill{height:100%;border-radius:3px}
+    .p-pct{font-size:.65rem;font-weight:600;color:var(--ink-muted)}
+
+    /* Floating blob behind phone */
+    .phone-blob{
+      position:absolute;width:360px;height:360px;border-radius:50%;
+      background:radial-gradient(circle,var(--blush) 0%,var(--blush-deep) 40%,transparent 70%);
+      opacity:.5;filter:blur(60px);z-index:0;
+      animation:blobFloat 10s ease-in-out infinite;
+    }
+    @keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(15px,-20px) scale(1.08)}}
+    .phone-blob-2{
+      position:absolute;width:200px;height:200px;border-radius:50%;
+      background:radial-gradient(circle,var(--peach) 0%,transparent 70%);
+      opacity:.3;filter:blur(40px);z-index:0;top:-40px;right:0;
+      animation:blobFloat 8s ease-in-out infinite;animation-delay:-4s;
+    }
+
+    /* MARQUEE */
+    .marquee{
+      padding:4rem 0;overflow:hidden;border-top:1px solid rgba(0,0,0,.05);border-bottom:1px solid rgba(0,0,0,.05);
+      background:var(--warm);
+    }
+    .marquee-track{
+      display:flex;gap:3rem;animation:scroll 30s linear infinite;width:max-content;
+    }
+    @keyframes scroll{to{transform:translateX(-50%)}}
+    .marquee-item{
+      font-family:'Fraunces',serif;font-size:1.3rem;font-weight:300;font-style:italic;
+      color:var(--ink-muted);white-space:nowrap;display:flex;align-items:center;gap:1.5rem;
+    }
+    .marquee-item .dot{width:6px;height:6px;border-radius:50%;background:var(--rose);opacity:.4}
+
+    /* FEATURES */
+    .features{padding:120px var(--r)}
+    .features-inner{max-width:1100px;margin:0 auto}
+    .section-eyebrow{
+      font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--rose);margin-bottom:1rem;
+    }
+    .features-header{
+      display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:5rem;flex-wrap:wrap;
+    }
+    .features-header h2{font-size:clamp(2.2rem,4vw,3.2rem);max-width:500px}
+    .features-header p{font-size:1rem;color:var(--ink-light);max-width:360px;text-align:right}
+
+    .feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+    .feat-card{
+      padding:2.5rem;border-radius:20px;position:relative;overflow:hidden;
+      transition:transform .3s,box-shadow .3s;
+    }
+    .feat-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(42,31,36,.08)}
+    .feat-card.blush{background:var(--blush)}
+    .feat-card.warm{background:var(--warm)}
+    .feat-card.white{background:white;border:1px solid rgba(0,0,0,.05)}
+    .feat-card.sage{background:#eef2e8}
+    .feat-card.tall{grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between}
+    .feat-icon{
+      width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+      margin-bottom:1.5rem;font-size:1.3rem;
+    }
+    .feat-icon.rose-bg{background:rgba(201,123,139,.12)}
+    .feat-icon.ink-bg{background:rgba(42,31,36,.08)}
+    .feat-icon.sage-bg{background:rgba(139,165,120,.15)}
+    .feat-icon.peach-bg{background:rgba(240,196,168,.2)}
+    .feat-card h3{font-size:1.25rem;margin-bottom:.6rem}
+    .feat-card p{font-size:.9rem;color:var(--ink-light);line-height:1.7}
+
+    /* Inline visual in tall card */
+    .mini-review{
+      margin-top:2rem;display:flex;align-items:center;justify-content:center;gap:.8rem;
+    }
+    .mini-card{
+      width:64px;height:80px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      font-size:.7rem;font-weight:600;gap:.3rem;
+    }
+    .mini-card.skip{background:rgba(248,113,113,.08);color:var(--red,#e06070);border:1px solid rgba(248,113,113,.15);transform:rotate(-8deg)}
+    .mini-card.current{
+      background:white;border:1.5px solid var(--rose);transform:scale(1.15);z-index:1;position:relative;
+      box-shadow:0 4px 16px rgba(201,123,139,.15);
+    }
+    .mini-card.approve{background:rgba(74,222,128,.08);color:var(--sage-deep,#6a8a58);border:1px solid rgba(74,222,128,.2);transform:rotate(8deg)}
+    .mini-card .emoji{font-size:1.2rem}
+
+    /* HOW */
+    .how{padding:120px var(--r);background:var(--warm)}
+    .how-inner{max-width:1100px;margin:0 auto}
+    .how-header{text-align:center;margin-bottom:5rem}
+    .how-header h2{font-size:clamp(2.2rem,4vw,3.2rem)}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;position:relative}
+    .step{text-align:center}
+    .step-circle{
+      width:64px;height:64px;border-radius:50%;margin:0 auto 1.5rem;
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:var(--rose);
+      background:white;border:1.5px solid var(--blush-deep);
+    }
+    .step h3{font-size:1.1rem;margin-bottom:.5rem}
+    .step p{font-size:.88rem;color:var(--ink-light);max-width:260px;margin:0 auto}
+    .step-line{
+      position:absolute;top:32px;left:calc(16.67% + 32px);right:calc(16.67% + 32px);height:1.5px;
+      background:linear-gradient(90deg,var(--blush-deep),var(--rose),var(--blush-deep));opacity:.3;
+    }
+
+    /* CTA */
+    .cta{padding:140px var(--r);text-align:center;position:relative;overflow:hidden}
+    .cta-blob{
+      position:absolute;width:600px;height:400px;border-radius:50%;
+      background:radial-gradient(ellipse,var(--blush) 0%,transparent 70%);
+      bottom:-100px;left:50%;transform:translateX(-50%);opacity:.6;filter:blur(80px);pointer-events:none;
+    }
+    .cta-icon{
+      width:96px;height:96px;border-radius:22px;margin-bottom:2rem;position:relative;
+      object-fit:cover;object-position:center 40%;
+      box-shadow:0 8px 30px rgba(201,123,139,.2);
+    }
+    .cta h2{
+      font-size:clamp(2.5rem,5vw,4rem);letter-spacing:-.03em;margin-bottom:1rem;position:relative;
+    }
+    .cta h2 em{font-style:italic;font-weight:300;color:var(--rose)}
+    .cta>p{font-size:1.05rem;color:var(--ink-light);margin-bottom:2.5rem;position:relative}
+    .cta .btn-dark{position:relative}
+
+    /* FOOTER */
+    footer{padding:3rem var(--r);border-top:1px solid rgba(0,0,0,.06);text-align:center}
+    footer p{font-size:.82rem;color:var(--ink-muted)}
+    footer a{color:var(--ink-muted);transition:color .2s}
+    footer a:hover{color:var(--ink)}
+
+    /* REVEAL */
+    .rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+    .rv.vis{opacity:1;transform:translateY(0)}
+    .rv[data-d="1"]{transition-delay:.08s}
+    .rv[data-d="2"]{transition-delay:.16s}
+    .rv[data-d="3"]{transition-delay:.24s}
+    .rv[data-d="4"]{transition-delay:.32s}
+    .rv[data-d="5"]{transition-delay:.4s}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .hero-inner{grid-template-columns:1fr;text-align:center}
+      .hero-desc{margin-left:auto;margin-right:auto}
+      .hero-actions{justify-content:center}
+      .platforms{justify-content:center}
+      .phone-wrap{margin-top:3rem}
+      .features-header{flex-direction:column;align-items:flex-start;text-align:left}
+      .features-header p{text-align:left}
+      .feat-grid{grid-template-columns:1fr}
+      .feat-card.tall{grid-row:span 1}
+      .steps{grid-template-columns:1fr;gap:2.5rem}
+      .step-line{display:none}
+    }
+    @media(max-width:600px){
+      nav{padding:.8rem 1rem}
+      .nav-right a:not(.store-btn){display:none}
+      .hero{padding:100px 1.25rem 60px}
+      .features{padding:80px 1.25rem}
+      .how{padding:80px 1.25rem}
+      .cta{padding:100px 1.25rem}
+      .marquee-item{font-size:1rem}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <img src="icon.png" alt="Localizer icon" class="globe">
+    Localizer
+  </a>
+  <div class="nav-right">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="https://apps.apple.com/app/localizer-xcstrings-editor/id6742487515" class="store-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      App Store
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag rv">Xcode String Catalogs</div>
+      <h1 class="rv" data-d="1">Translate<br>your app,<br><em>visually.</em></h1>
+      <p class="hero-desc rv" data-d="2">Open .xcstrings files, swipe through translations like cards, track every language's progress, and push changes via GitHub &mdash; all from one native app.</p>
+      <div class="hero-actions rv" data-d="3">
+        <a href="https://apps.apple.com/app/localizer-xcstrings-editor/id6742487515" class="btn-dark">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Download for free
+        </a>
+        <a href="#features" class="btn-subtle">
+          See features
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+      </div>
+      <div class="platforms rv" data-d="4">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="1" width="14" height="22" rx="3"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+          iPhone
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="16" rx="3"/><line x1="12" y1="16" x2="12" y2="16.01"/></svg>
+          iPad
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Mac
+        </span>
+      </div>
+    </div>
+
+    <div class="phone-wrap rv" data-d="3">
+      <div class="phone-blob"></div>
+      <div class="phone-blob-2"></div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="p-header">
+            <h4>Languages</h4>
+            <span class="p-badge">8 langs</span>
+          </div>
+          <div class="p-lang">
+            <span class="p-flag">&#x1F1FA;&#x1F1F8;</span>
+            <div class="p-info">
+              <span class="p-name">English</span>
+              <span class="p-sub">Source</span>
+              <div class="p-bar"><div class="p-fill" style="width:100%;background:var(--sage)"></div></div>
+            </div>
+            <span class="p-pct">100%</span>
+          </div>
+          <div class="p-lang">
+            <span class="p-flag">&#x1F1EB;&#x1F1F7;</span>
+            <div class="p-info">
+              <span class="p-name">French</span>
+              <span class="p-sub">3 need review</span>
+              <div class="p-bar"><div class="p-fill" style="width:85%;background:var(--rose)"></div></div>
+            </div>
+            <span class="p-pct">85%</span>
+          </div>
+          <div class="p-lang">
+            <span class="p-flag">&#x1F1E9;&#x1F1EA;</span>
+            <div class="p-info">
+              <span class="p-name">German</span>
+              <span class="p-sub">8 missing</span>
+              <div class="p-bar"><div class="p-fill" style="width:62%;background:var(--peach)"></div></div>
+            </div>
+            <span class="p-pct">62%</span>
+          </div>
+          <div class="p-lang">
+            <span class="p-flag">&#x1F1EF;&#x1F1F5;</span>
+            <div class="p-info">
+              <span class="p-name">Japanese</span>
+              <span class="p-sub">15 missing</span>
+              <div class="p-bar"><div class="p-fill" style="width:38%;background:var(--blush-deep)"></div></div>
+            </div>
+            <span class="p-pct">38%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track" aria-hidden="true">
+    <span class="marquee-item">.xcstrings <span class="dot"></span></span>
+    <span class="marquee-item">Swipe review <span class="dot"></span></span>
+    <span class="marquee-item">GitHub PRs <span class="dot"></span></span>
+    <span class="marquee-item">Progress tracking <span class="dot"></span></span>
+    <span class="marquee-item">5 color themes <span class="dot"></span></span>
+    <span class="marquee-item">iPhone &middot; iPad &middot; Mac <span class="dot"></span></span>
+    <span class="marquee-item">Inline editing <span class="dot"></span></span>
+    <span class="marquee-item">Drag &amp; drop <span class="dot"></span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">.xcstrings <span class="dot"></span></span>
+    <span class="marquee-item">Swipe review <span class="dot"></span></span>
+    <span class="marquee-item">GitHub PRs <span class="dot"></span></span>
+    <span class="marquee-item">Progress tracking <span class="dot"></span></span>
+    <span class="marquee-item">5 color themes <span class="dot"></span></span>
+    <span class="marquee-item">iPhone &middot; iPad &middot; Mac <span class="dot"></span></span>
+    <span class="marquee-item">Inline editing <span class="dot"></span></span>
+    <span class="marquee-item">Drag &amp; drop <span class="dot"></span></span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="features-inner">
+    <div class="features-header">
+      <div>
+        <p class="section-eyebrow rv">Features</p>
+        <h2 class="rv" data-d="1">Built for developers<br>who ship worldwide</h2>
+      </div>
+      <p class="rv" data-d="2">Every tool you need to manage Xcode string catalogs, wrapped in a native app that feels right at home on Apple platforms.</p>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat-card blush tall rv" data-d="1">
+        <div>
+          <div class="feat-icon rose-bg">&#x1F0CF;</div>
+          <h3>Swipe Review</h3>
+          <p>Tinder-style card interface. Swipe right to approve, left to skip. Source and target side by side on every card. Review an entire language in minutes.</p>
+        </div>
+        <div class="mini-review">
+          <div class="mini-card skip"><span class="emoji">&#x274C;</span>Skip</div>
+          <div class="mini-card current"><span class="emoji">&#x1F30D;</span>Hola</div>
+          <div class="mini-card approve"><span class="emoji">&#x2705;</span>Approve</div>
+        </div>
+      </div>
+
+      <div class="feat-card white rv" data-d="2">
+        <div class="feat-icon ink-bg">&#x1F4CA;</div>
+        <h3>Language Dashboard</h3>
+        <p>Progress bars, missing counts, needs-review badges. Know exactly where every language stands at a glance.</p>
+      </div>
+
+      <div class="feat-card sage rv" data-d="3">
+        <div class="feat-icon sage-bg">&#x1F517;</div>
+        <h3>GitHub Integration</h3>
+        <p>Browse repos, download .xcstrings files, edit translations, and create pull requests &mdash; without leaving the app.</p>
+      </div>
+
+      <div class="feat-card warm rv" data-d="2">
+        <div class="feat-icon peach-bg">&#x1F4C4;</div>
+        <h3>Native .xcstrings</h3>
+        <p>Full Xcode string catalog support. Edit translations inline, update states, modify comments. Fully compatible.</p>
+      </div>
+
+      <div class="feat-card white rv" data-d="3">
+        <div class="feat-icon rose-bg">&#x1F3A8;</div>
+        <h3>5 Color Themes</h3>
+        <p>Midnight, Ocean, Forest, Sunset, Nebula. Dark mode that feels personal.</p>
+      </div>
+
+      <div class="feat-card blush rv" data-d="4">
+        <div class="feat-icon ink-bg">&#x1F512;</div>
+        <h3>Privacy First</h3>
+        <p>Your data stays on device. GitHub tokens stored securely in Keychain. No analytics, no tracking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="how-header">
+      <p class="section-eyebrow rv">How it works</p>
+      <h2 class="rv" data-d="1">Three steps to ship</h2>
+    </div>
+    <div class="steps">
+      <div class="step-line"></div>
+      <div class="step rv" data-d="2">
+        <div class="step-circle">1</div>
+        <h3>Open a file</h3>
+        <p>Drop an .xcstrings file or browse a GitHub repo to pick one.</p>
+      </div>
+      <div class="step rv" data-d="3">
+        <div class="step-circle">2</div>
+        <h3>Review &amp; edit</h3>
+        <p>Swipe through cards, approve or skip. Edit inline on Mac.</p>
+      </div>
+      <div class="step rv" data-d="4">
+        <div class="step-circle">3</div>
+        <h3>Ship it</h3>
+        <p>Save locally or create a GitHub PR with your changes in one tap.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-blob"></div>
+  <img src="icon.png" alt="" class="cta-icon rv">
+  <p class="section-eyebrow rv" data-d="1">Available now</p>
+  <h2 class="rv" data-d="1">Localize your app,<br><em>from anywhere.</em></h2>
+  <p class="rv" data-d="2">Free on the App Store for iPhone, iPad, and Mac.</p>
+  <div class="rv" data-d="3">
+    <a href="https://apps.apple.com/app/localizer-xcstrings-editor/id6742487515" class="btn-dark">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download for free
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>
+    <a href="../index.html">&copy; 2026 Antoine Barrault</a> &middot;
+    <a href="mailto:antoine@asapps.fr">Contact</a>
+  </p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target) } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // Nav scroll state
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+</script>
+
+</body>
+</html>

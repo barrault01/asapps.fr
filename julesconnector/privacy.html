@@ -123,7 +123,7 @@
   </ul>
 
   <h2>API Keys</h2>
-  <p>The App requires a Jules API key to function. Your API key is stored <strong>locally on your device</strong> in the system Keychain, which is encrypted by the operating system. Your API key is never sent to any server other than the official Jules API (<strong>jules.google.com</strong>) to perform the actions you request.</p>
+  <p>The App requires a Jules API key to function. Your API key is stored <strong>locally on your device</strong> — in the system Keychain on Apple devices, or in encrypted shared preferences on Android — both of which are encrypted by the operating system. Your API key is never sent to any server other than the official Jules API (<strong>jules.google.com</strong>) to perform the actions you request.</p>
 
   <h2>Communication with Third-Party Services</h2>
   <p>When you use the App, it communicates directly with Google's Jules API on your behalf. This communication is:</p>
@@ -135,12 +135,12 @@
   <p>We have no access to the data exchanged between your device and Google's Jules API. Please refer to <strong>Google's privacy policy</strong> for information about how Google handles your data.</p>
 
   <h2>Voice Input</h2>
-  <p>The App offers speech-to-text functionality for dictating prompts. Voice recognition is performed <strong>on-device</strong> using Apple's Speech framework. Audio data is not recorded, stored, or transmitted to our servers.</p>
+  <p>The App offers speech-to-text functionality for dictating prompts. Voice recognition is performed <strong>on-device</strong> using Apple's Speech framework on iOS/Mac or Android's Speech Recognition API. Audio data is not recorded, stored, or transmitted to our servers.</p>
 
   <h2>Local Storage</h2>
   <p>The App stores the following data locally on your device:</p>
   <ul>
-    <li>API keys (in the encrypted system Keychain)</li>
+    <li>API keys (in the encrypted system Keychain on Apple devices, or encrypted shared preferences on Android)</li>
     <li>Your theme and display preferences</li>
     <li>Cached session data for offline viewing</li>
   </ul>

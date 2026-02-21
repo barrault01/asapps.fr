@@ -6,12 +6,12 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Pievra: AI Coding for Jules | Manage Sessions, Plans &amp; PRs</title>
-  <meta name="description" content="Run your Jules workflow from iPhone, iPad, and Mac. Launch sessions, review plans before execution, track activity live, and monitor pull requests on the go.">
+  <meta name="description" content="Run your Jules workflow from iPhone, iPad, Mac, and Android. Launch sessions, review plans before execution, track activity live, and monitor pull requests on the go.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://asapps.fr/julesconnector/">
-  <meta name="keywords" content="agent,developer,github,pull,request,workflow,code,assistant,automation,productivity,devtools">
+  <meta name="keywords" content="agent,developer,github,pull,request,workflow,code,assistant,automation,productivity,devtools,android,ios,mac,jules,google">
   <meta property="og:title" content="Pievra: AI Coding for Jules">
-  <meta property="og:description" content="Manage sessions, plans, and PRs for Jules from iPhone, iPad, and Mac.">
+  <meta property="og:description" content="Manage sessions, plans, and PRs for Jules from iPhone, iPad, Mac, and Android.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://asapps.fr/julesconnector/">
   <meta property="og:image" content="https://asapps.fr/favicon.ico">
@@ -57,6 +57,15 @@
     }
     .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 20px var(--accent-glow)}
     .nav-cta svg{width:15px;height:15px}
+    .nav-cta-android{background:transparent;border:1px solid var(--border-light);color:var(--text)!important}
+    .nav-cta-android:hover{border-color:var(--accent);background:var(--accent-soft)}
+    .new-badge{
+      display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.55rem;font-weight:700;
+      letter-spacing:.06em;text-transform:uppercase;padding:.15rem .4rem;border-radius:4px;
+      background:linear-gradient(135deg,#34d399,#10b981);color:#0a0a08;margin-left:.3rem;
+      animation:badgeGlow 3s ease-in-out infinite;
+    }
+    @keyframes badgeGlow{0%,100%{box-shadow:0 0 4px rgba(52,211,153,.3)}50%{box-shadow:0 0 12px rgba(52,211,153,.5)}}
 
     /* HERO */
     .hero{
@@ -330,9 +339,13 @@
   <div class="nav-links">
     <a href="#features">Features</a>
     <a href="#how">Get Started</a>
+    <a href="https://play.google.com/store/apps/details?id=com.julesconnect.android" class="nav-cta nav-cta-android">
+      <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M17.523 2.226a.5.5 0 0 0-.7.1L14.76 5.312A9.4 9.4 0 0 0 12 4.9a9.4 9.4 0 0 0-2.76.412L7.177 2.326a.5.5 0 1 0-.8.6l1.95 2.86C5.79 7.14 4.2 9.68 4.2 12.6h15.6c0-2.92-1.59-5.46-4.127-6.814l1.95-2.86a.5.5 0 0 0-.1-.7M8.8 10.4a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6m6.4 0a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6M4.2 13.6v6.8a1.4 1.4 0 0 0 1.4 1.4h1.4v3.2a1.4 1.4 0 0 0 2.8 0v-3.2h4.4v3.2a1.4 1.4 0 0 0 2.8 0v-3.2h1.4a1.4 1.4 0 0 0 1.4-1.4v-6.8zm-2.8 0a1.4 1.4 0 0 0-1.4 1.4v4a1.4 1.4 0 0 0 2.8 0v-4a1.4 1.4 0 0 0-1.4-1.4m21.2 0a1.4 1.4 0 0 0-1.4 1.4v4a1.4 1.4 0 0 0 2.8 0v-4a1.4 1.4 0 0 0-1.4-1.4"/></svg>
+      Android <span class="new-badge">New</span>
+    </a>
     <a href="https://apps.apple.com/app/id6746287230" class="nav-cta">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      Download
+      iOS
     </a>
   </div>
 </nav>
@@ -342,13 +355,16 @@
     <div class="hero-content">
       <div class="hero-label reveal">Pievra: AI Coding for Jules</div>
       <h1 class="reveal" data-delay="1">Manage Sessions,<br><em>Plans &amp; PRs.</em></h1>
-      <p class="hero-sub reveal" data-delay="2">Launch and manage Jules coding sessions, review plans before execution, and track progress live across iPhone, iPad, and Mac.</p>
+      <p class="hero-sub reveal" data-delay="2">Launch and manage Jules coding sessions, review plans before execution, and track progress live across iPhone, iPad, Mac, and Android.</p>
       <div class="hero-buttons reveal" data-delay="3">
         <a href="https://apps.apple.com/app/id6746287230" class="btn btn-primary">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          Download on the App Store
+          App Store
         </a>
-        <a href="#features" class="btn btn-ghost">See features</a>
+        <a href="https://play.google.com/store/apps/details?id=com.julesconnect.android" class="btn btn-ghost" style="border-color:#34d399;color:#34d399">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.523 2.226a.5.5 0 0 0-.7.1L14.76 5.312A9.4 9.4 0 0 0 12 4.9a9.4 9.4 0 0 0-2.76.412L7.177 2.326a.5.5 0 1 0-.8.6l1.95 2.86C5.79 7.14 4.2 9.68 4.2 12.6h15.6c0-2.92-1.59-5.46-4.127-6.814l1.95-2.86a.5.5 0 0 0-.1-.7M8.8 10.4a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6m6.4 0a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6M4.2 13.6v6.8a1.4 1.4 0 0 0 1.4 1.4h1.4v3.2a1.4 1.4 0 0 0 2.8 0v-3.2h4.4v3.2a1.4 1.4 0 0 0 2.8 0v-3.2h1.4a1.4 1.4 0 0 0 1.4-1.4v-6.8zm-2.8 0a1.4 1.4 0 0 0-1.4 1.4v4a1.4 1.4 0 0 0 2.8 0v-4a1.4 1.4 0 0 0-1.4-1.4m21.2 0a1.4 1.4 0 0 0-1.4 1.4v4a1.4 1.4 0 0 0 2.8 0v-4a1.4 1.4 0 0 0-1.4-1.4"/></svg>
+          Google Play <span class="new-badge">New</span>
+        </a>
       </div>
       <div class="hero-platforms reveal" data-delay="4">
         <span>
@@ -362,6 +378,10 @@
         <span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           Mac
+        </span>
+        <span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="1" width="14" height="22" rx="3"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+          Android
         </span>
       </div>
     </div>
@@ -432,7 +452,7 @@
           <div class="wave-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         </div>
         <h3>Voice Input</h3>
-        <p>Dictate your prompts using built-in speech-to-text with live waveform visualization.</p>
+        <p>Dictate your prompts using built-in speech-to-text with live waveform visualization on iOS and Android.</p>
       </div>
       <div class="bento-card wide reveal" data-delay="3">
         <div class="card-visual">
@@ -464,7 +484,7 @@
           </div>
         </div>
         <h3>Multi-Key Management</h3>
-        <p>Store and switch between multiple API keys, securely saved in the system Keychain.</p>
+        <p>Store and switch between multiple API keys, securely saved in the system Keychain or encrypted storage.</p>
       </div>
       <div class="bento-card reveal" data-delay="4">
         <div class="card-visual">
@@ -483,12 +503,13 @@
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem">
           <div>
             <h3>Cross-Platform</h3>
-            <p>Runs natively on iPhone, iPad, and Mac with a responsive interface adapted to each device.</p>
+            <p>Runs natively on iPhone, iPad, Mac, and Android with a responsive interface adapted to each device.</p>
           </div>
           <div class="device-icons">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="5" y="1" width="14" height="22" rx="3"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="16" rx="3"/><line x1="12" y1="16" x2="12" y2="16.01"/></svg>
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.5" stroke-linecap="round"><rect x="5" y="1" width="14" height="22" rx="3"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
           </div>
         </div>
       </div>
@@ -523,11 +544,17 @@
 <section class="cta-section">
   <p class="section-label reveal">Ready?</p>
   <h2 class="reveal" data-delay="1">Take Jules<br><em>everywhere you go.</em></h2>
-  <p class="reveal" data-delay="2">Available now on iPhone, iPad, and Mac.</p>
-  <a href="https://apps.apple.com/app/id6746287230" class="btn btn-primary reveal" data-delay="3">
-    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-    Download on the App Store
-  </a>
+  <p class="reveal" data-delay="2">Available now on iPhone, iPad, Mac, and Android.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap" class="reveal" data-delay="3">
+    <a href="https://apps.apple.com/app/id6746287230" class="btn btn-primary">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      App Store
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.julesconnect.android" class="btn btn-ghost" style="border-color:#34d399;color:#34d399">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.523 2.226a.5.5 0 0 0-.7.1L14.76 5.312A9.4 9.4 0 0 0 12 4.9a9.4 9.4 0 0 0-2.76.412L7.177 2.326a.5.5 0 1 0-.8.6l1.95 2.86C5.79 7.14 4.2 9.68 4.2 12.6h15.6c0-2.92-1.59-5.46-4.127-6.814l1.95-2.86a.5.5 0 0 0-.1-.7M8.8 10.4a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6m6.4 0a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6M4.2 13.6v6.8a1.4 1.4 0 0 0 1.4 1.4h1.4v3.2a1.4 1.4 0 0 0 2.8 0v-3.2h4.4v3.2a1.4 1.4 0 0 0 2.8 0v-3.2h1.4a1.4 1.4 0 0 0 1.4-1.4v-6.8zm-2.8 0a1.4 1.4 0 0 0-1.4 1.4v4a1.4 1.4 0 0 0 2.8 0v-4a1.4 1.4 0 0 0-1.4-1.4m21.2 0a1.4 1.4 0 0 0-1.4 1.4v4a1.4 1.4 0 0 0 2.8 0v-4a1.4 1.4 0 0 0-1.4-1.4"/></svg>
+      Google Play <span class="new-badge">New</span>
+    </a>
+  </div>
 </section>
 
 <footer>
