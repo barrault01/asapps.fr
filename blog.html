@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Blog — Antoine Barrault</title>
   <meta name="description" content="Technical articles about iOS development, Swift, SwiftUI, and mobile app engineering by Antoine Barrault.">
   <meta property="og:title" content="Blog — Antoine Barrault">
@@ -431,10 +433,10 @@ struct ContentView: View {
     <div class="footer__inner container">
       <p class="footer__copy">&copy; 2025 Antoine Barrault</p>
       <div class="footer__links">
-        <a href="https://github.com/barrault01" target="_blank" rel="noopener" class="footer__link">GitHub</a>
-        <a href="https://www.linkedin.com/in/ant1/" target="_blank" rel="noopener" class="footer__link">LinkedIn</a>
-        <a href="https://x.com/_ant_one" target="_blank" rel="noopener" class="footer__link">X</a>
-        <a href="https://medium.com/@ant_one" target="_blank" rel="noopener" class="footer__link">Medium</a>
+        <a href="https://github.com/barrault01" target="_blank" rel="noopener noreferrer" class="footer__link">GitHub</a>
+        <a href="https://www.linkedin.com/in/ant1/" target="_blank" rel="noopener noreferrer" class="footer__link">LinkedIn</a>
+        <a href="https://x.com/_ant_one" target="_blank" rel="noopener noreferrer" class="footer__link">X</a>
+        <a href="https://medium.com/@ant_one" target="_blank" rel="noopener noreferrer" class="footer__link">Medium</a>
         <a href="mailto:antoine@asapps.fr" class="footer__link">Email</a>
       </div>
     </div>
