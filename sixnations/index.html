@@ -6,21 +6,21 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>6 Nations App - Live Rugby Scores, Fixtures & Standings | Six Nations 2026</title>
-    <meta name="description" content="Track the Six Nations Rugby Championship live with the 6 Nations app. Real-time scores, fixtures, standings table, push notifications, TV schedules & match countdown. Free on iPhone, iPad & Apple Watch.">
+    <meta name="description" content="Track the Six Nations Rugby Championship live with the 6 Nations app. Real-time scores, fixtures, standings table, push notifications, TV schedules & match countdown. Free on iPhone, iPad, Apple Watch & Android.">
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://asapps.fr/sixnations/">
     <meta name="keywords" content="Six Nations, 6 Nations, rugby, live scores, fixtures, standings, Six Nations 2026, rugby app, championship, England, France, Ireland, Scotland, Wales, Italy">
     <meta name="theme-color" content="#08090c">
     <meta name="apple-itunes-app" content="app-id=414001342">
     <meta property="og:title" content="6 Nations App - Live Rugby Scores & Fixtures | 2026 Season">
-    <meta property="og:description" content="Your ultimate companion for the Six Nations Championship. Live scores, fixtures, standings, push notifications and more. Free on the App Store.">
+    <meta property="og:description" content="Your ultimate companion for the Six Nations Championship. Live scores, fixtures, standings, push notifications and more. Free on the App Store and Google Play.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="6 Nations App">
     <meta property="og:url" content="https://asapps.fr/sixnations/">
     <meta property="og:image" content="https://asapps.fr/sixnations/assets/6nations-icon.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="6 Nations App - Live Rugby Scores & Fixtures">
-    <meta name="twitter:description" content="Track the Six Nations Championship live. Real-time scores, fixtures, standings & push notifications. Free on the App Store.">
+    <meta name="twitter:description" content="Track the Six Nations Championship live. Real-time scores, fixtures, standings & push notifications. Free on the App Store and Google Play.">
     <link rel="alternate" hreflang="en" href="index.html">
     <link rel="alternate" hreflang="fr" href="fr/index.html">
     <link rel="alternate" hreflang="x-default" href="https://asapps.fr/sixnations/">
@@ -32,7 +32,7 @@
         "@context": "https://schema.org",
         "@type": "MobileApplication",
         "name": "6 Nations",
-        "operatingSystem": "iOS",
+        "operatingSystem": "iOS, Android",
         "applicationCategory": "SportsApplication",
         "offers": {
             "@type": "Offer",
@@ -41,6 +41,10 @@
         },
         "description": "Track the Six Nations Rugby Championship live. Real-time scores, fixtures, standings, push notifications, TV schedules and match countdown.",
         "downloadUrl": "https://apps.apple.com/app/id414001342",
+        "sameAs": [
+            "https://apps.apple.com/app/id414001342",
+            "https://play.google.com/store/apps/details?id=fr.asapps.sixnations"
+        ],
         "author": {
             "@type": "Person",
             "name": "Antoine Barrault"
@@ -74,7 +78,7 @@
                 "name": "Which devices support the 6 Nations app?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "The app is available on iPhone, iPad, Apple Watch, and Apple Vision Pro. It includes a home screen widget for quick match countdowns and Live Activities for real-time match tracking on iOS 16 and later."
+                    "text": "The app is available on iPhone, iPad, Apple Watch, Apple Vision Pro, and Android phones and tablets. It includes a home screen widget for quick match countdowns and Live Activities for real-time match tracking on iOS 16 and later."
                 }
             },
             {
@@ -250,6 +254,18 @@
             transform: translateY(-1px);
         }
 
+        .nav-cta-android {
+            background: transparent !important;
+            color: var(--cream) !important;
+            border: 1px solid rgba(45, 138, 78, 0.55);
+        }
+
+        .nav-cta-android:hover {
+            background: rgba(45, 138, 78, 0.2) !important;
+            border-color: var(--pitch-bright);
+            color: var(--cream) !important;
+        }
+
         .lang-switch {
             font-family: 'Syne', sans-serif;
             font-size: 0.78rem;
@@ -413,6 +429,29 @@
         .btn-primary svg {
             width: 20px;
             height: 20px;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            background: rgba(45, 138, 78, 0.14);
+            border: 1px solid rgba(45, 138, 78, 0.55);
+            color: var(--cream);
+            padding: 0.9rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.92rem;
+            letter-spacing: -0.01em;
+            transition: transform 0.25s, background 0.25s, border-color 0.25s;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            background: rgba(45, 138, 78, 0.22);
+            border-color: var(--pitch-bright);
         }
 
         .btn-ghost {
@@ -824,6 +863,13 @@
             margin-bottom: 2.5rem;
         }
 
+        .cta-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         .cta-platforms {
             display: flex;
             gap: 0.6rem;
@@ -1085,7 +1131,8 @@
                 <li><a href="#screenshots">Screenshots</a></li>
                 <li><a href="#teams">Teams</a></li>
                 <li><a href="fr/index.html" class="lang-switch">FR</a></li>
-                <li><a href="https://apps.apple.com/app/id414001342" class="nav-cta">Download</a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=fr.asapps.sixnations" class="nav-cta nav-cta-android">Android</a></li>
+                <li><a href="https://apps.apple.com/app/id414001342" class="nav-cta">iOS</a></li>
             </ul>
         </div>
     </nav>
@@ -1103,6 +1150,9 @@
                     <a href="https://apps.apple.com/app/id414001342" class="btn-primary">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                         Download Free
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=fr.asapps.sixnations" class="btn-secondary">
+                        Get it on Google Play
                     </a>
                     <a href="#features" class="btn-ghost">Learn more &darr;</a>
                 </div>
@@ -1267,7 +1317,7 @@
             </div>
             <div class="faq-item reveal">
                 <h3>Which devices support the 6 Nations app?</h3>
-                <p>The app is available on iPhone, iPad, Apple Watch, and Apple Vision Pro. It includes a home screen widget for quick match countdowns and Live Activities for real-time match tracking on iOS 16 and later.</p>
+                <p>The app is available on iPhone, iPad, Apple Watch, Apple Vision Pro, and Android phones and tablets. It includes a home screen widget for quick match countdowns and Live Activities for real-time match tracking on iOS 16 and later.</p>
             </div>
             <div class="faq-item reveal">
                 <h3>Is the 6 Nations app free?</h3>
@@ -1281,15 +1331,21 @@
         <div class="cta-content reveal">
             <h2>Ready for the<br><em>next match?</em></h2>
             <p>Download 6 Nations for free and never miss a moment of the championship.</p>
-            <a href="https://apps.apple.com/app/id414001342" class="btn-primary">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                Download on the App Store
-            </a>
+            <div class="cta-actions">
+                <a href="https://apps.apple.com/app/id414001342" class="btn-primary">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    Download on the App Store
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=fr.asapps.sixnations" class="btn-secondary">
+                    Get it on Google Play
+                </a>
+            </div>
             <div class="cta-platforms">
                 <span>iPhone</span>
                 <span>iPad</span>
                 <span>Apple Watch</span>
                 <span>Apple Vision</span>
+                <span>Android</span>
             </div>
         </div>
     </section>
@@ -1303,6 +1359,7 @@
             </div>
             <ul class="footer-links">
                 <li><a href="https://apps.apple.com/app/id414001342">App Store</a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=fr.asapps.sixnations">Google Play</a></li>
                 <li><a href="privacy.html">Privacy Policy</a></li>
                 <li><a href="terms.html">Terms of Use</a></li>
             </ul>
