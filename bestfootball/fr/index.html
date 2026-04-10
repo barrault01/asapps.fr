@@ -41,7 +41,7 @@
     },
     "description": "Suivez la Coupe du Monde 2026 avec scores en direct, calendrier, classement, suivi des equipes et notifications instantanees.",
     "downloadUrl": "https://apps.apple.com/",
-    "featureList": "Scores en direct, Fixtures, Classements, Notifications, Centre du match, Countdown"
+    "featureList": "Scores en direct, Calendrier, Classements, Notifications, Pronostics, Ligues, Collection de cartes, Stickers, Apple Watch, Compte a rebours"
   }
   </script>
 
@@ -273,61 +273,17 @@
     .hero-stat span { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
 
     .device {
-      background: linear-gradient(180deg, rgba(13, 22, 32, 0.98), rgba(9, 14, 23, 0.9));
-      border: 1px solid var(--line);
-      border-radius: 1.8rem;
-      padding: 0.9rem;
-      box-shadow: 0 24px 54px rgba(0, 0, 0, 0.45);
-      max-width: 360px;
+      max-width: 320px;
       margin-inline: auto;
+      filter: drop-shadow(0 24px 54px rgba(0, 0, 0, 0.5));
     }
 
-    .screen {
-      border-radius: 1.2rem;
-      overflow: hidden;
-      background: linear-gradient(180deg, #16314f, #0d2238 55%, #132844);
-      min-height: 510px;
-      padding: 1.1rem;
-      display: grid;
-      grid-template-rows: auto auto 1fr;
-      gap: 0.8rem;
+    .device img {
+      width: 100%;
+      height: auto;
+      border-radius: 1.6rem;
+      display: block;
     }
-
-    .screen-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.82rem;
-      color: #d4e2f7;
-    }
-
-    .fixture-card {
-      background: rgba(9, 16, 24, 0.34);
-      border: 1px solid rgba(245, 242, 232, 0.17);
-      border-radius: 1rem;
-      padding: 0.8rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .fixture-top {
-      display: flex;
-      justify-content: space-between;
-      color: #d8e6fb;
-      font-size: 0.76rem;
-      margin-bottom: 0.45rem;
-    }
-
-    .fixture-main {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 0.5rem;
-      text-align: center;
-    }
-
-    .team-name { font-weight: 700; font-size: 0.92rem; }
-
-    .score { font-family: "Anton", sans-serif; font-size: 1.55rem; color: var(--gold); letter-spacing: 0.03em; }
 
     .section {
       padding: 6rem 2rem;
@@ -399,39 +355,38 @@
       border: 1px solid var(--line);
       overflow: hidden;
       background: #132233;
-      min-height: 280px;
       position: relative;
       isolation: isolate;
     }
 
-    .shot::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(245,242,232,0.03), transparent 30%, rgba(245,242,232,0.06));
-      z-index: 1;
+    .shot img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
-    .shot-content {
+    .shot-label {
       position: absolute;
-      inset: 0;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2.5rem 1rem 1rem;
+      background: linear-gradient(to top, rgba(9,16,24,0.92), transparent);
       z-index: 2;
     }
 
-    .shot small {
+    .shot-label small {
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: #c8d7ea;
+      display: block;
+      margin-bottom: 0.2rem;
     }
 
-    .shot strong {
+    .shot-label strong {
       font-family: "Anton", sans-serif;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       text-transform: uppercase;
       letter-spacing: 0.02em;
     }
@@ -543,7 +498,6 @@
       .hero, .section, .cta { padding-inline: 1rem; }
       .grid-3, .shots, .group-grid { grid-template-columns: 1fr; }
       .hero h1 { font-size: 2.3rem; }
-      .screen { min-height: 450px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -577,7 +531,7 @@
       <div class="reveal visible">
         <div class="hero-kicker">Route vers la Coupe du Monde 2026</div>
         <h1>Bestfootball <em>Coupe du Monde 2026</em></h1>
-        <p>Suivez chaque match du coup d envoi jusqu a la finale. Bestfootball vous donne les scores en direct, le calendrier, le classement, les compositions et des alertes instantanees.</p>
+        <p>Suivez chaque match du coup d'envoi jusqu'a la finale. Scores en direct, calendrier, classement, pronostics entre amis, collection de cartes et alertes instantanees.</p>
         <div class="hero-actions">
           <a href="https://apps.apple.com/" class="btn btn-primary">Telecharger gratuitement</a>
           <a href="#features" class="btn btn-ghost">Explorer les fonctionnalites</a>
@@ -590,49 +544,7 @@
       </div>
 
       <div class="device reveal">
-        <div class="screen">
-          <div class="screen-header">
-            <span>Centre du match</span>
-            <span>LIVE</span>
-          </div>
-
-          <div class="fixture-card">
-            <div class="fixture-top">
-              <span>Demi-finale</span>
-              <span>82'</span>
-            </div>
-            <div class="fixture-main">
-              <div class="team-name">Spain</div>
-              <div class="score">2 - 1</div>
-              <div class="team-name">Brazil</div>
-            </div>
-          </div>
-
-          <div>
-            <div class="fixture-card">
-              <div class="fixture-top">
-                <span>Groupe A</span>
-                <span>Demain</span>
-              </div>
-              <div class="fixture-main">
-                <div class="team-name">USA</div>
-                <div class="score">vs</div>
-                <div class="team-name">Japan</div>
-              </div>
-            </div>
-            <div class="fixture-card">
-              <div class="fixture-top">
-                <span>Groupe D</span>
-                <span>20:00</span>
-              </div>
-              <div class="fixture-main">
-                <div class="team-name">France</div>
-                <div class="score">vs</div>
-                <div class="team-name">Argentina</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <img src="../assets/screenshots/home-dark.png" alt="Ecran d'accueil BestFootball avec compte a rebours, pronostics et collection de cartes" width="1320" height="2868">
       </div>
     </div>
   </section>
@@ -643,12 +555,15 @@
       <h2 class="reveal">Tout pour le jour de match</h2>
       <p class="section-intro reveal">Concu pour le mode tournoi : mises a jour rapides, calendrier clair et acces direct aux matchs qui vous interessent.</p>
       <div class="grid-3">
-        <article class="feature reveal"><h3>Scores en direct</h3><p>Mises a jour seconde par seconde, cartons, remplacements et evenements de la timeline.</p></article>
-        <article class="feature reveal"><h3>Calendrier des matchs</h3><p>Heures de coup d envoi locales pour toutes les phases de groupes et a elimination directe.</p></article>
+        <article class="feature reveal"><h3>Scores en direct</h3><p>Mises a jour seconde par seconde avec Live Activities et Dynamic Island.</p></article>
+        <article class="feature reveal"><h3>Calendrier des matchs</h3><p>Heures de coup d'envoi locales pour toutes les phases de groupes et a elimination directe.</p></article>
         <article class="feature reveal"><h3>Classements</h3><p>Regles de departage automatiques avec difference de buts et indicateurs fair-play.</p></article>
-        <article class="feature reveal"><h3>Compositions</h3><p>Onze de depart, bancs et formations des qu ils sont officiels.</p></article>
-        <article class="feature reveal"><h3>Alertes instantanees</h3><p>Personnalisez les notifications pour buts, coup d envoi, mi-temps et fin de match.</p></article>
-        <article class="feature reveal"><h3>Compte a rebours match</h3><p>Ne manquez jamais un coup d envoi avec les widgets de compte a rebours du prochain match.</p></article>
+        <article class="feature reveal"><h3>Pronostics &amp; Ligues</h3><p>Predisez les resultats des matchs et affrontez vos amis dans des ligues privees.</p></article>
+        <article class="feature reveal"><h3>Collection de cartes</h3><p>Collectionnez les 1 200 cartes de joueurs et completez votre album Coupe du Monde.</p></article>
+        <article class="feature reveal"><h3>Createur de stickers</h3><p>Creez votre propre carte de joueur personnalisee et partagez-la avec vos amis.</p></article>
+        <article class="feature reveal"><h3>Alertes instantanees</h3><p>Personnalisez les notifications pour buts, coup d'envoi, mi-temps et fin de match.</p></article>
+        <article class="feature reveal"><h3>Compte a rebours</h3><p>Ne manquez jamais un coup d'envoi avec les widgets sur votre ecran d'accueil et de verrouillage.</p></article>
+        <article class="feature reveal"><h3>Apple Watch</h3><p>Complication et scores en direct directement a votre poignet.</p></article>
       </div>
     </div>
   </section>
@@ -659,10 +574,22 @@
       <h2 class="reveal">Concu pour le rythme du tournoi</h2>
       <p class="section-intro reveal">Lecture rapide, hierarchie forte, sans surcharge. Pense pour l intensite d un mois de Coupe du Monde.</p>
       <div class="shots">
-        <div class="shot reveal"><div class="shot-content"><small>Home</small><strong>Tableau du jour</strong></div></div>
-        <div class="shot reveal"><div class="shot-content"><small>Matches</small><strong>Calendrier complet</strong></div></div>
-        <div class="shot reveal"><div class="shot-content"><small>Tables</small><strong>Group Classements</strong></div></div>
-        <div class="shot reveal"><div class="shot-content"><small>Equipes</small><strong>Suivez votre nation</strong></div></div>
+        <div class="shot reveal">
+          <img src="../assets/screenshots/home-dark.png" alt="Ecran d'accueil avec compte a rebours et pronostics" width="1320" height="2868" loading="lazy">
+          <div class="shot-label"><small>Accueil</small><strong>Prochain match</strong></div>
+        </div>
+        <div class="shot reveal">
+          <img src="../assets/screenshots/fixtures-dark.png" alt="Calendrier de tous les matchs programmes" width="1320" height="2868" loading="lazy">
+          <div class="shot-label"><small>Matchs</small><strong>Calendrier complet</strong></div>
+        </div>
+        <div class="shot reveal">
+          <img src="../assets/screenshots/groups-dark.png" alt="Classement des groupes avec points et difference de buts" width="1320" height="2868" loading="lazy">
+          <div class="shot-label"><small>Groupes</small><strong>Classements</strong></div>
+        </div>
+        <div class="shot reveal">
+          <img src="../assets/screenshots/leagues-dark.png" alt="Ecran des ligues pour jouer avec vos amis" width="1320" height="2868" loading="lazy">
+          <div class="shot-label"><small>Ligues</small><strong>Jouez entre amis</strong></div>
+        </div>
       </div>
     </div>
   </section>
@@ -673,10 +600,14 @@
       <h2 class="reveal">Suivez chaque groupe</h2>
       <p class="section-intro reveal">Suivez toutes les equipes tout au long du tournoi en Amerique du Nord, de la phase de groupes jusqu a la finale.</p>
       <div class="group-grid">
-        <div class="group reveal"><h3>Group A</h3><ul><li>Mexico</li><li>Netherlands</li><li>Senegal</li><li>Canada</li></ul></div>
-        <div class="group reveal"><h3>Group B</h3><ul><li>USA</li><li>Uruguay</li><li>South Korea</li><li>Poland</li></ul></div>
-        <div class="group reveal"><h3>Group C</h3><ul><li>Argentina</li><li>Denmark</li><li>Morocco</li><li>Australia</li></ul></div>
-        <div class="group reveal"><h3>Group D</h3><ul><li>France</li><li>Japan</li><li>Colombia</li><li>Nigeria</li></ul></div>
+        <div class="group reveal"><h3>Groupe A</h3><ul><li>Mexique</li><li>Afrique du Sud</li><li>Coree du Sud</li><li>Tchequie</li></ul></div>
+        <div class="group reveal"><h3>Groupe B</h3><ul><li>Canada</li><li>Bosnie-Herzegovine</li><li>Paraguay</li><li>Australie</li></ul></div>
+        <div class="group reveal"><h3>Groupe C</h3><ul><li>USA</li><li>Angleterre</li><li>Uruguay</li><li>Danemark</li></ul></div>
+        <div class="group reveal"><h3>Groupe D</h3><ul><li>Bresil</li><li>Colombie</li><li>Senegal</li><li>Albanie</li></ul></div>
+        <div class="group reveal"><h3>Groupe E</h3><ul><li>Argentine</li><li>Pays-Bas</li><li>Japon</li><li>Kenya</li></ul></div>
+        <div class="group reveal"><h3>Groupe F</h3><ul><li>France</li><li>Croatie</li><li>Iran</li><li>Nouvelle-Zelande</li></ul></div>
+        <div class="group reveal"><h3>Groupe G</h3><ul><li>Espagne</li><li>Portugal</li><li>Nigeria</li><li>Arabie saoudite</li></ul></div>
+        <div class="group reveal"><h3>Groupe H</h3><ul><li>Allemagne</li><li>Italie</li><li>Maroc</li><li>Pologne</li></ul></div>
       </div>
     </div>
   </section>

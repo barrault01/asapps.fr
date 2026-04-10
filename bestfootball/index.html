@@ -41,7 +41,7 @@
     },
     "description": "Follow World Cup 2026 with live scores, fixtures, standings, team tracking and instant notifications.",
     "downloadUrl": "https://apps.apple.com/",
-    "featureList": "Live Scores, Fixtures, Standings, Notifications, Match Center, Countdown"
+    "featureList": "Live Scores, Fixtures, Standings, Notifications, Predictions, Leagues, Card Collection, Sticker Creator, Apple Watch, Countdown"
   }
   </script>
 
@@ -273,61 +273,17 @@
     .hero-stat span { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
 
     .device {
-      background: linear-gradient(180deg, rgba(13, 22, 32, 0.98), rgba(9, 14, 23, 0.9));
-      border: 1px solid var(--line);
-      border-radius: 1.8rem;
-      padding: 0.9rem;
-      box-shadow: 0 24px 54px rgba(0, 0, 0, 0.45);
-      max-width: 360px;
+      max-width: 320px;
       margin-inline: auto;
+      filter: drop-shadow(0 24px 54px rgba(0, 0, 0, 0.5));
     }
 
-    .screen {
-      border-radius: 1.2rem;
-      overflow: hidden;
-      background: linear-gradient(180deg, #16314f, #0d2238 55%, #132844);
-      min-height: 510px;
-      padding: 1.1rem;
-      display: grid;
-      grid-template-rows: auto auto 1fr;
-      gap: 0.8rem;
+    .device img {
+      width: 100%;
+      height: auto;
+      border-radius: 1.6rem;
+      display: block;
     }
-
-    .screen-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.82rem;
-      color: #d4e2f7;
-    }
-
-    .fixture-card {
-      background: rgba(9, 16, 24, 0.34);
-      border: 1px solid rgba(245, 242, 232, 0.17);
-      border-radius: 1rem;
-      padding: 0.8rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .fixture-top {
-      display: flex;
-      justify-content: space-between;
-      color: #d8e6fb;
-      font-size: 0.76rem;
-      margin-bottom: 0.45rem;
-    }
-
-    .fixture-main {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 0.5rem;
-      text-align: center;
-    }
-
-    .team-name { font-weight: 700; font-size: 0.92rem; }
-
-    .score { font-family: "Anton", sans-serif; font-size: 1.55rem; color: var(--gold); letter-spacing: 0.03em; }
 
     .section {
       padding: 6rem 2rem;
@@ -399,39 +355,38 @@
       border: 1px solid var(--line);
       overflow: hidden;
       background: #132233;
-      min-height: 280px;
       position: relative;
       isolation: isolate;
     }
 
-    .shot::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(245,242,232,0.03), transparent 30%, rgba(245,242,232,0.06));
-      z-index: 1;
+    .shot img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
-    .shot-content {
+    .shot-label {
       position: absolute;
-      inset: 0;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2.5rem 1rem 1rem;
+      background: linear-gradient(to top, rgba(9,16,24,0.92), transparent);
       z-index: 2;
     }
 
-    .shot small {
+    .shot-label small {
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: #c8d7ea;
+      display: block;
+      margin-bottom: 0.2rem;
     }
 
-    .shot strong {
+    .shot-label strong {
       font-family: "Anton", sans-serif;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       text-transform: uppercase;
       letter-spacing: 0.02em;
     }
@@ -543,7 +498,6 @@
       .hero, .section, .cta { padding-inline: 1rem; }
       .grid-3, .shots, .group-grid { grid-template-columns: 1fr; }
       .hero h1 { font-size: 2.3rem; }
-      .screen { min-height: 450px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -577,7 +531,7 @@
       <div class="reveal visible">
         <div class="hero-kicker">Road To World Cup 2026</div>
         <h1>Bestfootball <em>World Cup 2026</em></h1>
-        <p>Track every match from opening night to the final. Bestfootball gives you live scores, fixtures, standings, lineups, and instant alerts built for football fans.</p>
+        <p>Track every match from opening night to the final. Live scores, fixtures, standings, predictions with friends, card collection, and instant alerts built for football fans.</p>
         <div class="hero-actions">
           <a href="https://apps.apple.com/" class="btn btn-primary">Download Free</a>
           <a href="#features" class="btn btn-ghost">Explore Features</a>
@@ -590,49 +544,7 @@
       </div>
 
       <div class="device reveal">
-        <div class="screen">
-          <div class="screen-header">
-            <span>Match Center</span>
-            <span>LIVE</span>
-          </div>
-
-          <div class="fixture-card">
-            <div class="fixture-top">
-              <span>Semi-final</span>
-              <span>82'</span>
-            </div>
-            <div class="fixture-main">
-              <div class="team-name">Spain</div>
-              <div class="score">2 - 1</div>
-              <div class="team-name">Brazil</div>
-            </div>
-          </div>
-
-          <div>
-            <div class="fixture-card">
-              <div class="fixture-top">
-                <span>Group A</span>
-                <span>Tomorrow</span>
-              </div>
-              <div class="fixture-main">
-                <div class="team-name">USA</div>
-                <div class="score">vs</div>
-                <div class="team-name">Japan</div>
-              </div>
-            </div>
-            <div class="fixture-card">
-              <div class="fixture-top">
-                <span>Group D</span>
-                <span>20:00</span>
-              </div>
-              <div class="fixture-main">
-                <div class="team-name">France</div>
-                <div class="score">vs</div>
-                <div class="team-name">Argentina</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <img src="assets/screenshots/home-dark.png" alt="BestFootball home screen showing next game countdown, predictions, and card collection" width="1320" height="2868">
       </div>
     </div>
   </section>
@@ -643,12 +555,15 @@
       <h2 class="reveal">Everything for matchday</h2>
       <p class="section-intro reveal">Built for tournament mode: faster updates, cleaner schedules, and direct shortcuts to the matches you care about.</p>
       <div class="grid-3">
-        <article class="feature reveal"><h3>Live Scores</h3><p>Second-by-second score updates, cards, substitutions, and timeline events.</p></article>
+        <article class="feature reveal"><h3>Live Scores</h3><p>Second-by-second score updates with Live Activities and Dynamic Island support.</p></article>
         <article class="feature reveal"><h3>Fixtures Calendar</h3><p>Local kickoff times across all groups and knockout rounds.</p></article>
         <article class="feature reveal"><h3>Standings</h3><p>Automatic tiebreak logic with goal difference and fair play indicators.</p></article>
-        <article class="feature reveal"><h3>Lineups</h3><p>Starting XI, benches, and formations as soon as they are official.</p></article>
+        <article class="feature reveal"><h3>Predictions &amp; Leagues</h3><p>Predict match results and compete with friends in private leagues.</p></article>
+        <article class="feature reveal"><h3>Card Collection</h3><p>Collect all 1,200 player cards and build your ultimate World Cup album.</p></article>
+        <article class="feature reveal"><h3>Sticker Creator</h3><p>Build your own custom player card and share it with friends.</p></article>
         <article class="feature reveal"><h3>Instant Alerts</h3><p>Customize notifications for goals, kickoff, half-time, and full-time.</p></article>
-        <article class="feature reveal"><h3>Match Countdown</h3><p>Never miss kickoff with countdown widgets for your next selected match.</p></article>
+        <article class="feature reveal"><h3>Match Countdown</h3><p>Never miss kickoff with countdown widgets on your home and lock screen.</p></article>
+        <article class="feature reveal"><h3>Apple Watch</h3><p>Complication and live score updates right on your wrist.</p></article>
       </div>
     </div>
   </section>
@@ -659,10 +574,22 @@
       <h2 class="reveal">Designed for tournament rhythm</h2>
       <p class="section-intro reveal">Fast scan, bold hierarchy, no clutter. Built for the intensity of a World Cup month.</p>
       <div class="shots">
-        <div class="shot reveal"><div class="shot-content"><small>Home</small><strong>Today Dashboard</strong></div></div>
-        <div class="shot reveal"><div class="shot-content"><small>Matches</small><strong>Full Fixture List</strong></div></div>
-        <div class="shot reveal"><div class="shot-content"><small>Tables</small><strong>Group Standings</strong></div></div>
-        <div class="shot reveal"><div class="shot-content"><small>Teams</small><strong>Follow Your Nation</strong></div></div>
+        <div class="shot reveal">
+          <img src="assets/screenshots/home-dark.png" alt="Home screen with countdown and predictions" width="1320" height="2868" loading="lazy">
+          <div class="shot-label"><small>Home</small><strong>Next Game Countdown</strong></div>
+        </div>
+        <div class="shot reveal">
+          <img src="assets/screenshots/fixtures-dark.png" alt="Fixtures screen showing all scheduled games" width="1320" height="2868" loading="lazy">
+          <div class="shot-label"><small>Games</small><strong>Full Fixture List</strong></div>
+        </div>
+        <div class="shot reveal">
+          <img src="assets/screenshots/groups-dark.png" alt="Group standings with points and goal difference" width="1320" height="2868" loading="lazy">
+          <div class="shot-label"><small>Groups</small><strong>Group Standings</strong></div>
+        </div>
+        <div class="shot reveal">
+          <img src="assets/screenshots/leagues-dark.png" alt="Leagues screen for predictions with friends" width="1320" height="2868" loading="lazy">
+          <div class="shot-label"><small>Leagues</small><strong>Play with Friends</strong></div>
+        </div>
       </div>
     </div>
   </section>
@@ -673,10 +600,14 @@
       <h2 class="reveal">Follow every group</h2>
       <p class="section-intro reveal">Track all teams as the tournament unfolds across North America, from group stage to final.</p>
       <div class="group-grid">
-        <div class="group reveal"><h3>Group A</h3><ul><li>Mexico</li><li>Netherlands</li><li>Senegal</li><li>Canada</li></ul></div>
-        <div class="group reveal"><h3>Group B</h3><ul><li>USA</li><li>Uruguay</li><li>South Korea</li><li>Poland</li></ul></div>
-        <div class="group reveal"><h3>Group C</h3><ul><li>Argentina</li><li>Denmark</li><li>Morocco</li><li>Australia</li></ul></div>
-        <div class="group reveal"><h3>Group D</h3><ul><li>France</li><li>Japan</li><li>Colombia</li><li>Nigeria</li></ul></div>
+        <div class="group reveal"><h3>Group A</h3><ul><li>Mexico</li><li>South Africa</li><li>South Korea</li><li>Czechia</li></ul></div>
+        <div class="group reveal"><h3>Group B</h3><ul><li>Canada</li><li>Bosnia &amp; Herzegovina</li><li>Paraguay</li><li>Australia</li></ul></div>
+        <div class="group reveal"><h3>Group C</h3><ul><li>USA</li><li>England</li><li>Uruguay</li><li>Denmark</li></ul></div>
+        <div class="group reveal"><h3>Group D</h3><ul><li>Brazil</li><li>Colombia</li><li>Senegal</li><li>Albania</li></ul></div>
+        <div class="group reveal"><h3>Group E</h3><ul><li>Argentina</li><li>Netherlands</li><li>Japan</li><li>Kenya</li></ul></div>
+        <div class="group reveal"><h3>Group F</h3><ul><li>France</li><li>Croatia</li><li>Iran</li><li>New Zealand</li></ul></div>
+        <div class="group reveal"><h3>Group G</h3><ul><li>Spain</li><li>Portugal</li><li>Nigeria</li><li>Saudi Arabia</li></ul></div>
+        <div class="group reveal"><h3>Group H</h3><ul><li>Germany</li><li>Italy</li><li>Morocco</li><li>Poland</li></ul></div>
       </div>
     </div>
   </section>
