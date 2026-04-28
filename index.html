@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Antoine Barrault — Mobile App Expert</title>
+  <title>Antoine Barrault - Mobile App Expert</title>
+  <meta name="twitter:description" content="Portfolio of Antoine Barrault, a mobile app expert with 15+ years of experience helping founders turn ideas into successful apps.">
+  <meta name="twitter:title" content="Antoine Barrault - Mobile App Expert">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="description" content="Portfolio of Antoine Barrault, a mobile app expert with 15+ years of experience helping founders turn ideas into successful apps.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://asapps.fr/">
-  <meta property="og:title" content="Antoine Barrault — Mobile App Expert">
-  <meta property="og:description" content="Building, launching, and scaling mobile apps business.">
+  <meta property="og:title" content="Antoine Barrault - Mobile App Expert">
+  <meta property="og:description" content="Portfolio of Antoine Barrault, a mobile app expert with 15+ years of experience helping founders turn ideas into successful apps.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://asapps.fr/">
-  <meta property="og:image" content="https://asapps.fr/favicon.ico">
+  <meta property="og:image" content="https://asapps.fr/public/images/avatar.jpg">
   <link rel="icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,6 +57,8 @@
       <a href="blog.html" class="nav__mobile-link">Blog</a>
     </div>
   </nav>
+
+<main>
 
   <!-- Hero -->
   <section class="hero">
@@ -132,19 +137,19 @@
         <h2 class="section__title">Latest from the blog</h2>
       </div>
       <div class="two-col">
-        <a href="https://medium.com/@ant_one" class="post-card reveal reveal-delay-1" target="_blank" rel="noopener noreferrer">
+        <a href="blog.html" class="post-card reveal reveal-delay-1">
           <div class="post-card__tag"><span class="tag">Swift</span></div>
           <h3 class="post-card__title">Using non-breaking space in Swift or how to prevent an automatic line break</h3>
           <p class="post-card__date">Nov 6, 2024</p>
         </a>
-        <a href="https://medium.com/@ant_one" class="post-card reveal reveal-delay-2" target="_blank" rel="noopener noreferrer">
+        <a href="blog.html" class="post-card reveal reveal-delay-2">
           <div class="post-card__tag"><span class="tag">iOS Development</span></div>
           <h3 class="post-card__title">Symbolicate a line from a raw crash log on iOS</h3>
           <p class="post-card__date">Jun 12, 2023</p>
         </a>
       </div>
       <div style="text-align:center;margin-top:32px">
-        <a href="https://medium.com/@ant_one" class="link-arrow reveal" target="_blank" rel="noopener noreferrer">
+        <a href="blog.html" class="link-arrow reveal">
           View all posts
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -165,19 +170,23 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
+
+</main>
+
+<footer class="footer">
     <div class="footer__inner container">
       <p class="footer__copy">&copy; 2025 Antoine Barrault</p>
       <div class="footer__links">
         <a href="https://github.com/barrault01" target="_blank" rel="noopener noreferrer" class="footer__link">GitHub</a>
         <a href="https://www.linkedin.com/in/ant1/" target="_blank" rel="noopener noreferrer" class="footer__link">LinkedIn</a>
         <a href="https://x.com/_ant_one" target="_blank" rel="noopener noreferrer" class="footer__link">X</a>
-        <a href="https://medium.com/@ant_one" target="_blank" rel="noopener noreferrer" class="footer__link">Medium</a>
-        <a href="mailto:antoine@asapps.fr" class="footer__link">Email</a>
+        <a href="blog.html" class="footer__link">Blog</a>
+        <a href="#" data-email-user="antoine" data-email-domain="asapps.fr" class="footer__link">Email</a>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/email.js"></script>
 </body>
 </html>

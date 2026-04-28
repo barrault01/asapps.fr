@@ -3,13 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://itunes.apple.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://itunes.apple.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Blog — Antoine Barrault</title>
-  <meta name="description" content="Technical articles about iOS development, Swift, SwiftUI, and mobile app engineering by Antoine Barrault.">
-  <meta property="og:title" content="Blog — Antoine Barrault">
-  <meta property="og:description" content="Writing about mobile apps, iOS development, and Swift.">
+  <title>Blog - Antoine Barrault</title>
+  <meta name="twitter:description" content="Technical articles about iOS development, Swift, SwiftUI, app privacy, crash logs, timers, and mobile engineering by Antoine Barrault.">
+  <meta name="twitter:title" content="Blog - Antoine Barrault">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://asapps.fr/blog.html">
+  <meta name="description" content="Technical articles about iOS development, Swift, SwiftUI, app privacy, crash logs, timers, and mobile engineering by Antoine Barrault.">
+  <meta property="og:title" content="Blog - Antoine Barrault">
+  <meta property="og:description" content="Technical articles about iOS development, Swift, SwiftUI, app privacy, crash logs, timers, and mobile engineering by Antoine Barrault.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://asapps.fr/public/images/avatar.jpg">
+  <meta property="og:url" content="https://asapps.fr/blog.html">
   <link rel="icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,6 +57,8 @@
       <a href="blog.html" class="nav__mobile-link">Blog</a>
     </div>
   </nav>
+
+<main>
 
   <!-- Header -->
   <section class="page-header">
@@ -429,19 +438,23 @@ struct ContentView: View {
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
+
+</main>
+
+<footer class="footer">
     <div class="footer__inner container">
       <p class="footer__copy">&copy; 2025 Antoine Barrault</p>
       <div class="footer__links">
         <a href="https://github.com/barrault01" target="_blank" rel="noopener noreferrer" class="footer__link">GitHub</a>
         <a href="https://www.linkedin.com/in/ant1/" target="_blank" rel="noopener noreferrer" class="footer__link">LinkedIn</a>
         <a href="https://x.com/_ant_one" target="_blank" rel="noopener noreferrer" class="footer__link">X</a>
-        <a href="https://medium.com/@ant_one" target="_blank" rel="noopener noreferrer" class="footer__link">Medium</a>
-        <a href="mailto:antoine@asapps.fr" class="footer__link">Email</a>
+        <a href="blog.html" class="footer__link">Blog</a>
+        <a href="#" data-email-user="antoine" data-email-domain="asapps.fr" class="footer__link">Email</a>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/email.js"></script>
 </body>
 </html>

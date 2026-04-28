@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Pievra: AI Coding for Jules | Manage Sessions, Plans &amp; PRs</title>
-  <meta name="description" content="Run your Jules workflow from iPhone, iPad, Mac, and Android. Launch sessions, review plans before execution, track activity live, and monitor pull requests on the go.">
+  <title>Pievra - AI Coding for Jules on Mobile</title>
+  <meta name="twitter:description" content="Run Jules workflows from iPhone, iPad, Mac, and Android. Launch sessions, review plans, track activity, and monitor pull requests on the go.">
+  <meta name="twitter:title" content="Pievra - AI Coding for Jules on Mobile">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="Run Jules workflows from iPhone, iPad, Mac, and Android. Launch sessions, review plans, track activity, and monitor pull requests on the go.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://asapps.fr/julesconnector/">
   <meta name="keywords" content="agent,developer,github,pull,request,workflow,code,assistant,automation,productivity,devtools,android,ios,mac,jules,google">
-  <meta property="og:title" content="Pievra: AI Coding for Jules">
-  <meta property="og:description" content="Manage sessions, plans, and PRs for Jules from iPhone, iPad, Mac, and Android.">
+  <meta property="og:title" content="Pievra - AI Coding for Jules on Mobile">
+  <meta property="og:description" content="Run Jules workflows from iPhone, iPad, Mac, and Android. Launch sessions, review plans, track activity, and monitor pull requests on the go.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://asapps.fr/julesconnector/">
-  <meta property="og:image" content="https://asapps.fr/favicon.ico">
+  <meta property="og:image" content="https://asapps.fr/julesconnector/assets/pievra-logo.png">
   <meta name="apple-itunes-app" content="app-id=fr.asapps.JulesConnect">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -140,7 +143,7 @@
       padding:1rem 1.25rem;border-bottom:1px solid var(--border);
       display:flex;align-items:center;justify-content:space-between;
     }
-    .mockup-header h4{font-size:.95rem;font-weight:700}
+    .mockup-title{font-size:.95rem;font-weight:700}
     .mockup-header .pill{
       font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:.2rem .6rem;
       border-radius:100px;background:var(--accent-soft);color:var(--accent);font-weight:500;
@@ -357,6 +360,8 @@
   </div>
 </nav>
 
+<main>
+
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-content">
@@ -397,7 +402,7 @@
       <div class="mockup-bg-card"></div>
       <div class="mockup">
         <div class="mockup-header">
-          <h4>Sessions</h4>
+          <div class="mockup-title">Sessions</div>
           <span class="pill">3 active</span>
         </div>
         <div class="mockup-body">
@@ -561,13 +566,16 @@
   </div>
 </section>
 
+
+</main>
+
 <footer>
   <p>Pievra is an independent third-party client and is not affiliated with or endorsed by Google.</p>
   <p style="margin-top:.5rem">
     <a href="../index.html" class="home-hover-link">&copy; 2026 Pievra</a> &middot;
     <a href="privacy.html">Privacy Policy</a> &middot;
     <a href="terms.html">Terms of Use</a> &middot;
-    <a href="mailto:contact@asapps.fr">Support</a>
+    <a href="#" data-email-user="contact" data-email-domain="asapps.fr">Support</a>
   </p>
 </footer>
 
@@ -582,6 +590,6 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
-
+  <script src="../js/email.js"></script>
 </body>
 </html>
