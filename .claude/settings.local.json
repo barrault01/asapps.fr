@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(tmux ls:*)",
-      "Bash(tmux kill-server:*)"
-    ]
-  }
-}
