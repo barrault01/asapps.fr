@@ -69,26 +69,33 @@
       <p class="legal-card__updated">Effective date: May 6, 2026</p>
 
       <p>This Privacy Policy applies to PK Remote, also listed on the App Store as Plex &amp; Kodi (XBMC) remote. The app is published by Antoine Barrault.</p>
-      <p>I do not operate a backend service for PK Remote. The app is designed to communicate directly with media centers on your local network or with Plex services when you choose to authenticate.</p>
+      <p>PK Remote does not operate a backend service. The app communicates directly with media centers on your local network and, when you choose to sign in, with Plex services to discover Plex HTPC and Companion receivers.</p>
 
       <h2>Information Stored on Your Device</h2>
       <ul>
         <li>Server names, host addresses, ports, and connection preferences you add or discover.</li>
-        <li>Plex authentication tokens or connection details when you choose to connect a Plex account.</li>
-        <li>Playback and remote-control preferences needed for app functionality.</li>
+        <li>Plex authentication tokens returned by Plex sign-in, used to look up your Plex HTPC receivers.</li>
+        <li>Optional credentials you provide for Kodi JSON-RPC hosts.</li>
+        <li>Your selected remote and onboarding state, so the app can restore them on next launch.</li>
       </ul>
 
       <h2>Local Network Access</h2>
-      <p>The app may scan your local network to find compatible Plex or Kodi installations. This discovery happens so the app can show devices you can control. Network discovery data is used for app functionality.</p>
+      <p>PK Remote scans your local network to find compatible Plex and Kodi installations. Discovery data is used only to show controllable devices in the app. The directional pad, playback, and volume commands are sent directly from your device to the media center you select.</p>
+
+      <h2>Plex Sign-In</h2>
+      <p>If you sign in with Plex, the authentication flow is handled by Plex. PK Remote receives a Plex token that is stored on your device and used to ask Plex Media Server which HTPC or Companion receivers are available. You can sign out at any time from the app.</p>
 
       <h2>Third-Party Services</h2>
-      <p>Plex and Kodi are third-party products and services. When you authenticate with Plex or control a Plex or Kodi server, those products may process information under their own policies. Apple may process App Store purchases, crash reports, and diagnostics under Apple's policies.</p>
+      <p>Plex, Kodi, and XBMC are third-party products and services. When you authenticate with Plex or control a Plex or Kodi server, those products may process information under their own policies. Apple may process App Store purchases (including tip jar items), crash reports, and diagnostics under Apple's policies.</p>
+
+      <h2>Tip Jar Purchases</h2>
+      <p>PK Remote offers optional tip jar in-app purchases. Purchases are processed by Apple. The app receives only what Apple provides for transaction validation and does not collect payment details.</p>
 
       <h2>Support Contact</h2>
       <p>If you contact support, I receive the contact details and message content you choose to send. I use that information only to answer your request.</p>
 
       <h2>Data Sharing</h2>
-      <p>I do not sell personal information. I do not use PK Remote data for advertising profiles. Data may be processed by Apple, Plex, Kodi, or email providers when you use those services.</p>
+      <p>I do not sell personal information. PK Remote does not include analytics SDKs, tracking pixels, or advertising. Data may be processed by Apple, Plex, Kodi, or email providers when you use those services.</p>
 
       <h2>Children's Privacy</h2>
       <p>The app is not directed to children under 13. If you believe a child has provided personal information through support contact, please contact me so I can delete it.</p>

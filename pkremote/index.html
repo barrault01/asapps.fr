@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>PK Remote - Plex &amp; Kodi Remote</title>
-  <meta name="description" content="PK Remote is an iOS remote control app for Plex HTPC, Plex Companion, and Kodi media centers with local network discovery and manual server setup.">
+  <title>PK Remote — A focused iOS remote for Plex &amp; Kodi</title>
+  <meta name="description" content="PK Remote is an iOS remote control app for Plex HTPC, Plex Companion, and Kodi media centers with local network discovery, Plex sign-in, and tactile controls.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://asapps.fr/pkremote/">
-  <meta name="theme-color" content="#0a0a0b">
+  <meta name="theme-color" content="#050810">
   <meta name="apple-itunes-app" content="app-id=403716879">
-  <meta property="og:title" content="PK Remote - Plex &amp; Kodi Remote">
+  <meta property="og:title" content="PK Remote — Plex &amp; Kodi remote">
   <meta property="og:description" content="A focused iOS remote for Plex HTPC, Plex Companion, and Kodi media centers.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://asapps.fr/pkremote/">
@@ -35,20 +35,13 @@
     "alternateName": "Plex & Kodi (XBMC) remote",
     "operatingSystem": "iOS",
     "applicationCategory": "UtilitiesApplication",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "downloadUrl": "https://apps.apple.com/us/app/plex-kodi-xbmc-remote/id403716879",
-    "author": {
-      "@type": "Person",
-      "name": "Antoine Barrault"
-    }
+    "author": { "@type": "Person", "name": "Antoine Barrault" }
   }
   </script>
 </head>
-<body class="app-landing" style="--app-accent:#38bdf8;--app-accent-soft:rgba(56,189,248,0.15)">
+<body class="app-landing pkr">
 
   <nav class="nav">
     <div class="nav__inner container">
@@ -81,64 +74,209 @@
 
 <main>
 
-  <section class="page-header">
-    <div class="container app-landing__hero">
-      <div class="app-landing__copy">
-        <div class="card__meta"><span class="tag">Media Remote</span><span class="app-status app-status--legacy">Legacy live</span></div>
-        <h1 class="page-header__title">PK <em>Remote</em></h1>
-        <p class="page-header__desc">A compact iOS remote for Plex HTPC, Plex Companion, and Kodi media centers. The public App Store listing is live under its legacy name.</p>
-        <div class="hero__actions" style="justify-content:flex-start;margin-top:28px">
-          <a href="https://apps.apple.com/us/app/plex-kodi-xbmc-remote/id403716879" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
-            View on App Store
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+  <section class="pkr-hero">
+    <div class="container pkr-hero__inner">
+      <div class="pkr-hero__copy">
+        <span class="pkr-hero__kicker">PK Remote · Version 3.0</span>
+        <h1 class="pkr-hero__title">Remote<br>for the<br><em>late show.</em></h1>
+        <p class="pkr-hero__lede">A focused iOS remote for Plex HTPC, Plex Companion, and Kodi media centers. Discover devices on your local network, sign in to Plex, and run the night without ever leaving the couch.</p>
+        <div class="pkr-hero__cta">
+          <a href="https://apps.apple.com/us/app/plex-kodi-xbmc-remote/id403716879" class="pkr-btn pkr-btn--primary" target="_blank" rel="noopener noreferrer">
+            Get it on the App Store
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
           </a>
-          <a href="privacy.html" class="btn btn--outline">Privacy</a>
-          <a href="terms.html" class="btn btn--outline">Terms</a>
+          <a href="#features" class="pkr-btn pkr-btn--ghost">See it move</a>
         </div>
-        <div class="app-landing__stats">
-          <div class="app-landing__stat"><strong>2.0.1</strong><span>Current App Store version</span></div>
-          <div class="app-landing__stat"><strong>3</strong><span>Plex HTPC, Plex Companion, Kodi</span></div>
-          <div class="app-landing__stat"><strong>Local</strong><span>Network discovery and manual setup</span></div>
-        </div>
+        <dl class="pkr-hero__meta">
+          <div><dt>Built with</dt><dd>SwiftUI</dd></div>
+          <div><dt>Supports</dt><dd>HTPC · Companion · Kodi</dd></div>
+          <div><dt>Network</dt><dd>Local first, no backend</dd></div>
+        </dl>
       </div>
-      <div class="app-landing__visual reveal reveal-delay-1" aria-label="PK Remote app preview">
-        <div class="app-landing__device">
-          <img class="app-landing__icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple124/v4/d6/73/65/d67365fb-10b5-09ff-3ece-54888aa07605/AppIcon-0-1x_U007emarketing-0-0-GLES2_U002c0-512MB-sRGB-0-0-0-85-220-0-0-0-7.png/512x512bb.jpg" alt="PK Remote app icon">
+
+      <div class="pkr-hero__stage" aria-hidden="true">
+        <div class="pkr-phone">
+          <div class="pkr-phone__btn pkr-phone__btn--mute"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--vol-up"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--vol-down"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--power"></div>
+          <div class="pkr-phone__screen">
+            <img src="img/screen-add.png" alt="">
+          </div>
+          <div class="pkr-phone__island"></div>
         </div>
-        <p class="app-landing__caption">Independent remote control app. Plex and Kodi are third-party products and services.</p>
+        <div class="pkr-phone">
+          <div class="pkr-phone__btn pkr-phone__btn--mute"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--vol-up"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--vol-down"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--power"></div>
+          <div class="pkr-phone__screen">
+            <img src="img/screen-main.png" alt="">
+          </div>
+          <div class="pkr-phone__island"></div>
+        </div>
+        <div class="pkr-phone">
+          <div class="pkr-phone__btn pkr-phone__btn--mute"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--vol-up"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--vol-down"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--power"></div>
+          <div class="pkr-phone__screen">
+            <img src="img/screen-remotes.png" alt="">
+          </div>
+          <div class="pkr-phone__island"></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section--sm">
+  <div class="pkr-marquee" aria-hidden="true">
+    <div class="pkr-marquee__track">
+      <span>D-Pad</span><span>Play / Pause</span><span>Seek ±10s</span><span>Volume</span><span>Discovery</span><span>Plex sign-in</span><span>Kodi JSON-RPC</span><span>OSD</span><span>Menu</span>
+      <span>D-Pad</span><span>Play / Pause</span><span>Seek ±10s</span><span>Volume</span><span>Discovery</span><span>Plex sign-in</span><span>Kodi JSON-RPC</span><span>OSD</span><span>Menu</span>
+    </div>
+  </div>
+
+  <section class="pkr-feature pkr-feature--left" id="features">
+    <div class="container pkr-feature__inner">
+      <div class="pkr-feature__visual">
+        <div class="pkr-phone" style="--pkr-phone-w:300px">
+          <div class="pkr-phone__btn pkr-phone__btn--mute"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--vol-up"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--vol-down"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--power"></div>
+          <div class="pkr-phone__screen">
+            <img src="img/screen-main.png" alt="PK Remote main screen with directional pad and playback controls">
+          </div>
+          <div class="pkr-phone__island"></div>
+        </div>
+      </div>
+      <div class="pkr-feature__copy">
+        <div class="pkr-feature__index">01 / Control</div>
+        <h2 class="pkr-feature__title">A <em>tactile</em> D-Pad,<br>built for the dark.</h2>
+        <p class="pkr-feature__desc">Big targets, soft glow, no fumbling. Navigate menus, dismiss the OSD, and pause the feature presentation without taking your eyes off the screen.</p>
+        <ol class="pkr-spec-list">
+          <li>Up · down · left · right with a glowing OK at the center.</li>
+          <li>Back, menu, info, and OSD as quick action buttons.</li>
+          <li>Home toggle on Plex and Info on Kodi, contextual to the receiver.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="pkr-feature pkr-feature--right">
+    <div class="container pkr-feature__inner">
+      <div class="pkr-feature__visual">
+        <div class="pkr-phone" style="--pkr-phone-w:300px">
+          <div class="pkr-phone__btn pkr-phone__btn--mute"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--vol-up"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--vol-down"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--power"></div>
+          <div class="pkr-phone__screen">
+            <img src="img/screen-remotes.png" alt="PK Remote saved remotes list with online status">
+          </div>
+          <div class="pkr-phone__island"></div>
+        </div>
+      </div>
+      <div class="pkr-feature__copy">
+        <div class="pkr-feature__index">02 / Playback</div>
+        <h2 class="pkr-feature__title">Skip, scrub,<br>and <em>set the volume.</em></h2>
+        <p class="pkr-feature__desc">Play / pause front and center. Seek ±10 seconds when the dialogue jumps. A real volume slider with step buttons so you can quiet a loud scene without unlocking your phone twice.</p>
+        <ol class="pkr-spec-list">
+          <li>Play, pause, stop, previous, and next from one row.</li>
+          <li>Forward and backward jumps with on-screen feedback.</li>
+          <li>Volume slider with up and down step buttons.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="pkr-feature pkr-feature--left">
+    <div class="container pkr-feature__inner">
+      <div class="pkr-feature__visual">
+        <div class="pkr-phone" style="--pkr-phone-w:300px">
+          <div class="pkr-phone__btn pkr-phone__btn--mute"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--vol-up"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--vol-down"></div>
+          <div class="pkr-phone__btn pkr-phone__btn--power"></div>
+          <div class="pkr-phone__screen">
+            <img src="img/screen-add.png" alt="PK Remote add remote setup form for Kodi">
+          </div>
+          <div class="pkr-phone__island"></div>
+        </div>
+      </div>
+      <div class="pkr-feature__copy">
+        <div class="pkr-feature__index">03 / Setup</div>
+        <h2 class="pkr-feature__title">Discovery first.<br><em>Manual when it matters.</em></h2>
+        <p class="pkr-feature__desc">Scan the local network for Plex Companion players and Kodi hosts. When a server hides behind a static IP, a port mapping, or HTTP credentials, add it by hand and PK Remote keeps it for next time.</p>
+        <ol class="pkr-spec-list">
+          <li>Local discovery for Plex and Kodi installations.</li>
+          <li>Plex sign-in to look up HTPC and Companion receivers.</li>
+          <li>Manual setup with host, port, and optional credentials.</li>
+          <li>Saves your selected remote for the next launch.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="pkr-timeline">
     <div class="container">
-      <div class="card-grid">
-        <article class="card reveal reveal-delay-1">
-          <h2 class="card__title">Remote control</h2>
-          <ul class="feature-list">
-            <li>Discover compatible media centers on the local network.</li>
-            <li>Add Plex or Kodi servers manually when discovery is not available.</li>
-            <li>Control playback from a native iOS interface built for quick access.</li>
-          </ul>
-        </article>
-        <article class="card reveal reveal-delay-2">
-          <h2 class="card__title">Supported systems</h2>
-          <p class="card__desc">The app is designed for Plex HTPC, Plex Companion, and Kodi installations reachable from your iPhone or iPad on the same network.</p>
-          <div class="tags app-card__tags">
-            <span class="tag tag--muted">Plex HTPC</span>
-            <span class="tag tag--muted">Plex Companion</span>
-            <span class="tag tag--muted">Kodi</span>
-          </div>
-        </article>
-        <article class="card reveal reveal-delay-3">
-          <h2 class="card__title">Public app support</h2>
-          <p class="card__desc">Privacy and terms pages are available for the live App Store listing, plus direct support contact for setup questions or bug reports.</p>
-          <div class="tags app-card__tags">
-            <a href="privacy.html" class="tag tag--muted">Privacy Policy</a>
-            <a href="terms.html" class="tag tag--muted">Terms</a>
-            <a href="#" data-email-user="contact" data-email-domain="asapps.fr" class="tag tag--muted">Contact</a>
-          </div>
-        </article>
+      <div class="pkr-timeline__heading">
+        <h2>Three steps to<br>the <em>first command.</em></h2>
+        <p>The first launch walks you through onboarding, picks a remote, and gets you to play / pause in under a minute. No account required for Kodi. Plex sign-in happens only when you ask for it.</p>
+      </div>
+      <div class="pkr-timeline__rail">
+        <div class="pkr-step">
+          <span class="pkr-step__num">Step 01</span>
+          <h3 class="pkr-step__title">Pick the receiver</h3>
+          <p class="pkr-step__desc">Choose Plex HTPC, Plex Companion, or Kodi during onboarding. The app explains which Plex apps actually accept commands.</p>
+        </div>
+        <div class="pkr-step">
+          <span class="pkr-step__num">Step 02</span>
+          <h3 class="pkr-step__title">Find the device</h3>
+          <p class="pkr-step__desc">Discover automatically, sign in to Plex for HTPC lookup, or punch in a host and port for Kodi JSON-RPC.</p>
+        </div>
+        <div class="pkr-step">
+          <span class="pkr-step__num">Step 03</span>
+          <h3 class="pkr-step__title">Take control</h3>
+          <p class="pkr-step__desc">Navigate, play, scrub, and adjust volume. The app remembers the remote for the next launch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pkr-compat">
+    <div class="container">
+      <div class="pkr-compat__grid">
+        <div class="pkr-compat__cell">
+          <span class="pkr-compat__label">Receivers</span>
+          <span class="pkr-compat__value">Plex HTPC</span>
+          <p class="pkr-compat__detail">Plus Plex Companion players advertised by Plex Media Server when you sign in.</p>
+        </div>
+        <div class="pkr-compat__cell">
+          <span class="pkr-compat__label">Protocol</span>
+          <span class="pkr-compat__value">Kodi JSON-RPC</span>
+          <p class="pkr-compat__detail">Any Kodi host with the JSON-RPC web server enabled on the local network.</p>
+        </div>
+        <div class="pkr-compat__cell">
+          <span class="pkr-compat__label">Devices</span>
+          <span class="pkr-compat__value">iPhone &amp; iPad</span>
+          <p class="pkr-compat__detail">Native SwiftUI build. No analytics SDKs. No advertising. No backend service.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pkr-final">
+    <div class="container pkr-final__inner">
+      <h2>Cue the <em>movie.</em></h2>
+      <p>PK Remote ships under its legacy App Store name, Plex &amp; Kodi (XBMC) remote, rebuilt from the ground up in SwiftUI for current iOS releases.</p>
+      <div class="pkr-final__cta">
+        <a href="https://apps.apple.com/us/app/plex-kodi-xbmc-remote/id403716879" class="pkr-btn pkr-btn--primary" target="_blank" rel="noopener noreferrer">
+          Open the App Store
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
+        <a href="privacy.html" class="pkr-btn pkr-btn--ghost">Privacy</a>
+        <a href="terms.html" class="pkr-btn pkr-btn--ghost">Terms</a>
       </div>
     </div>
   </section>
