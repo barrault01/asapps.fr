@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>MyCode - 2FA | Secure 2FA Code Vault</title>
+  <meta name="description" content="MyCode - 2FA keeps two-factor authentication codes organized, private, and ready with TOTP, HOTP, AutoFill, Siri shortcuts, biometric lock, and encrypted backups.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://asapps.fr/twofactor/">
+  <meta name="keywords" content="2FA, authenticator, TOTP, HOTP, OTP, verification codes, AutoFill, backup, Siri shortcuts, privacy">
+  <meta name="author" content="Antoine Barrault">
+  <meta name="application-name" content="MyCode - 2FA">
+  <meta name="theme-color" content="#080b10">
+  <meta property="og:title" content="MyCode - 2FA">
+  <meta property="og:description" content="A private two-factor authentication code vault for iPhone, iPad, and Mac.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://asapps.fr/twofactor/">
+  <meta property="og:image" content="https://asapps.fr/twofactor/assets/icon.png">
+  <meta property="og:site_name" content="MyCode - 2FA">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MyCode - 2FA">
+  <meta name="twitter:description" content="Secure your sign-ins with fast 2FA codes, AutoFill, backups, Siri shortcuts, and a private on-device vault.">
+  <link rel="icon" href="assets/icon.png">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@300;400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    (function(){var t=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'))})();
+  </script>
+  <style>
+    body.twofactor {
+      --tf-ink: var(--text);
+      --tf-muted: var(--text-muted);
+      --tf-faint: var(--text-faint);
+      --tf-accent: #38f8b7;
+      --tf-accent-strong: #7dd3fc;
+      --tf-warn: #fbbf24;
+      --tf-panel: color-mix(in srgb, var(--bg-card) 86%, var(--tf-accent) 14%);
+      --tf-panel-strong: color-mix(in srgb, var(--bg-card) 78%, var(--tf-accent-strong) 22%);
+      --tf-line: color-mix(in srgb, var(--border) 72%, var(--tf-accent) 28%);
+      background:
+        linear-gradient(90deg, color-mix(in srgb, var(--border) 22%, transparent) 1px, transparent 1px),
+        linear-gradient(color-mix(in srgb, var(--border) 18%, transparent) 1px, transparent 1px),
+        var(--bg);
+      background-size: 96px 96px;
+    }
+    .tf-hero {
+      min-height: 94vh;
+      padding: calc(var(--nav-h) + 44px) 0 56px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .tf-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, color-mix(in srgb, var(--bg) 20%, transparent), transparent 44%),
+        repeating-linear-gradient(90deg, transparent 0 28px, color-mix(in srgb, var(--tf-accent) 6%, transparent) 28px 29px);
+      opacity: 0.72;
+      pointer-events: none;
+    }
+    .tf-hero__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.78fr);
+      gap: clamp(32px, 6vw, 78px);
+      align-items: center;
+    }
+    .tf-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: var(--tf-accent);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .tf-badge::before {
+      content: '';
+      width: 7px;
+      height: 18px;
+      border: 1px solid currentColor;
+      border-radius: 99px;
+      box-shadow: inset 0 -7px 0 currentColor;
+    }
+    .tf-title {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(3.6rem, 9vw, 8rem);
+      line-height: 0.88;
+      letter-spacing: 0;
+    }
+    .tf-title em {
+      color: var(--tf-accent);
+      text-shadow: 0 0 34px color-mix(in srgb, var(--tf-accent) 32%, transparent);
+    }
+    .tf-lede {
+      max-width: 650px;
+      margin: 26px 0 0;
+      color: var(--tf-muted);
+      font-size: clamp(1rem, 1.55vw, 1.18rem);
+      line-height: 1.75;
+    }
+    .tf-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+    .tf-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border: 1px solid var(--tf-line);
+      border-radius: 8px;
+      color: var(--tf-ink);
+      font-weight: 700;
+      transition: transform 0.2s var(--ease), background 0.2s var(--ease), border-color 0.2s var(--ease);
+    }
+    .tf-button:hover {
+      transform: translateY(-1px);
+      border-color: var(--tf-accent);
+    }
+    .tf-button--primary {
+      background: var(--tf-accent);
+      color: #04100c;
+      border-color: transparent;
+    }
+    .tf-button--ghost {
+      background: var(--tf-panel);
+    }
+    .tf-proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      max-width: 620px;
+      margin-top: 34px;
+      border: 1px solid var(--tf-line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--tf-line);
+    }
+    .tf-proof__item {
+      padding: 18px 16px;
+      background: color-mix(in srgb, var(--bg-card) 88%, var(--bg) 12%);
+    }
+    .tf-proof__value {
+      display: block;
+      color: var(--tf-ink);
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      line-height: 1;
+    }
+    .tf-proof__label {
+      display: block;
+      margin-top: 8px;
+      color: var(--tf-faint);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .tf-stage {
+      position: relative;
+      min-height: 620px;
+      display: grid;
+      place-items: center;
+    }
+    .tf-stage::before {
+      content: '30 29 28 27 26 25';
+      position: absolute;
+      top: 4%;
+      right: 4%;
+      writing-mode: vertical-rl;
+      color: color-mix(in srgb, var(--tf-accent) 32%, transparent);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+    }
+    .tf-phone {
+      width: min(72vw, 312px);
+      position: relative;
+      z-index: 2;
+      border: 1px solid color-mix(in srgb, var(--tf-accent) 44%, var(--border));
+      border-radius: 42px;
+      padding: 10px;
+      background: #090c11;
+      box-shadow: 0 32px 90px rgba(0,0,0,0.42), 0 0 0 10px color-mix(in srgb, var(--tf-accent) 5%, transparent);
+    }
+    .tf-phone img,
+    .tf-mac img,
+    .tf-shot img {
+      width: 100%;
+      height: auto;
+      border-radius: inherit;
+    }
+    .tf-phone__screen {
+      overflow: hidden;
+      border-radius: 32px;
+      background: #090c11;
+    }
+    .tf-totp-card {
+      position: absolute;
+      left: 0;
+      bottom: 12%;
+      z-index: 3;
+      width: min(64vw, 270px);
+      padding: 16px;
+      border: 1px solid var(--tf-line);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--bg-card) 86%, var(--bg) 14%);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.34);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .tf-totp-card__top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--tf-faint);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .tf-code {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 5px;
+      margin-top: 14px;
+    }
+    .tf-code span {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 0.75;
+      border-radius: 6px;
+      background: var(--tf-panel-strong);
+      color: var(--tf-accent);
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+    .tf-ring {
+      position: absolute;
+      top: 15%;
+      left: 6%;
+      width: 88px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: conic-gradient(var(--tf-accent) 0 72%, color-mix(in srgb, var(--border) 72%, transparent) 72% 100%);
+      display: grid;
+      place-items: center;
+      color: var(--tf-ink);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      box-shadow: 0 0 40px color-mix(in srgb, var(--tf-accent) 24%, transparent);
+    }
+    .tf-ring::after {
+      content: '';
+      position: absolute;
+      inset: 9px;
+      border-radius: inherit;
+      background: var(--bg);
+    }
+    .tf-ring span {
+      position: relative;
+      z-index: 1;
+    }
+    .tf-section {
+      padding: clamp(70px, 10vw, 128px) 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .tf-section__head {
+      max-width: 760px;
+      margin-bottom: 36px;
+    }
+    .tf-section__eyebrow {
+      color: var(--tf-accent);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .tf-section__title {
+      margin: 12px 0 0;
+      font-size: clamp(2.3rem, 5vw, 4.6rem);
+      line-height: 1;
+    }
+    .tf-section__copy {
+      max-width: 620px;
+      margin: 18px 0 0;
+      color: var(--tf-muted);
+      font-size: 1.04rem;
+      line-height: 1.7;
+    }
+    .tf-workflow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .tf-step {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-card);
+      transition: transform 0.2s var(--ease), border-color 0.2s var(--ease);
+    }
+    .tf-step:hover {
+      transform: translateY(-2px);
+      border-color: var(--tf-line);
+    }
+    .tf-step__num {
+      display: inline-flex;
+      margin-bottom: 24px;
+      color: var(--tf-accent);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+    }
+    .tf-step h3 {
+      margin: 0 0 10px;
+      font-size: 1.45rem;
+    }
+    .tf-step p {
+      margin: 0;
+      color: var(--tf-muted);
+      font-size: 0.94rem;
+      line-height: 1.58;
+    }
+    .tf-showcase {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+      gap: clamp(28px, 5vw, 64px);
+      align-items: center;
+    }
+    .tf-mac {
+      border: 1px solid var(--tf-line);
+      border-radius: 14px;
+      padding: 10px;
+      background: #090c11;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.34);
+    }
+    .tf-mac img {
+      border-radius: 8px;
+    }
+    .tf-feature-list {
+      display: grid;
+      gap: 12px;
+    }
+    .tf-feature {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tf-feature:last-child {
+      border-bottom: none;
+    }
+    .tf-feature__mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--tf-line);
+      border-radius: 8px;
+      color: var(--tf-accent);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .tf-feature h3 {
+      margin: 0 0 6px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .tf-feature p {
+      margin: 0;
+      color: var(--tf-muted);
+      font-size: 0.94rem;
+      line-height: 1.58;
+    }
+    .tf-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(14px, 3vw, 28px);
+      align-items: start;
+    }
+    .tf-shot {
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 8px;
+      background: #090c11;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.25);
+    }
+    .tf-shot:nth-child(2) {
+      margin-top: 56px;
+    }
+    .tf-shot img {
+      border-radius: 18px;
+    }
+    .tf-privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--tf-line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--tf-line);
+    }
+    .tf-privacy-card {
+      min-height: 220px;
+      padding: 26px;
+      background: color-mix(in srgb, var(--bg-card) 88%, var(--bg) 12%);
+    }
+    .tf-privacy-card h3 {
+      margin: 0 0 14px;
+      font-size: 1.55rem;
+    }
+    .tf-privacy-card p {
+      margin: 0;
+      color: var(--tf-muted);
+      line-height: 1.6;
+    }
+    .tf-final {
+      padding: clamp(76px, 10vw, 128px) 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .tf-final h2 {
+      max-width: 760px;
+      margin: 0 auto 18px;
+      font-size: clamp(2.6rem, 6vw, 5.8rem);
+      line-height: 0.98;
+    }
+    .tf-final p {
+      max-width: 590px;
+      margin: 0 auto 30px;
+      color: var(--tf-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .tf-link-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      color: var(--tf-faint);
+      font-size: 0.9rem;
+    }
+    .tf-link-row a:hover {
+      color: var(--tf-accent);
+    }
+    @media (max-width: 980px) {
+      .tf-hero__grid,
+      .tf-showcase {
+        grid-template-columns: 1fr;
+      }
+      .tf-stage {
+        min-height: 570px;
+      }
+      .tf-workflow,
+      .tf-privacy-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 700px) {
+      .tf-proof,
+      .tf-workflow,
+      .tf-privacy-grid,
+      .tf-gallery {
+        grid-template-columns: 1fr;
+      }
+      .tf-shot:nth-child(2) {
+        margin-top: 0;
+      }
+      .tf-title {
+        font-size: clamp(3.2rem, 17vw, 5rem);
+      }
+      .tf-stage {
+        min-height: 520px;
+      }
+      .tf-totp-card {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 2%;
+      }
+      .tf-ring {
+        left: 0;
+        top: 8%;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "MyCode - 2FA",
+    "alternateName": "TwoFactor",
+    "operatingSystem": "iOS, iPadOS, macOS",
+    "applicationCategory": "UtilitiesApplication",
+    "author": { "@type": "Person", "name": "Antoine Barrault" }
+  }
+  </script>
+</head>
+<body class="twofactor">
+
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a href="../index.html" class="nav__logo">AB</a>
+      <div class="nav__links">
+        <a href="../index.html" class="nav__link">Home</a>
+        <a href="../apps.html" class="nav__link active">Apps</a>
+        <a href="../about.html" class="nav__link">About</a>
+        <a href="../work.html" class="nav__link">Work</a>
+        <a href="../blog.html" class="nav__link">Blog</a>
+      </div>
+      <div class="nav__right">
+        <button class="nav__theme-toggle" aria-label="Toggle theme">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav__hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__mobile-menu">
+      <a href="../index.html" class="nav__mobile-link">Home</a>
+      <a href="../apps.html" class="nav__mobile-link active">Apps</a>
+      <a href="../about.html" class="nav__mobile-link">About</a>
+      <a href="../work.html" class="nav__mobile-link">Work</a>
+      <a href="../blog.html" class="nav__mobile-link">Blog</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="tf-hero">
+      <div class="container tf-hero__grid">
+        <div class="tf-hero__copy">
+          <span class="tf-badge">Private authenticator vault</span>
+          <h1 class="tf-title">MyCode<br><em>2FA</em></h1>
+          <p class="tf-lede">Keep verification codes organized, private, and ready. MyCode supports TOTP and HOTP accounts, QR scanning, AutoFill, Siri shortcuts, biometric lock, and encrypted backup import/export.</p>
+          <div class="tf-actions">
+            <a href="#workflow" class="tf-button tf-button--primary">
+              Explore the workflow
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </a>
+            <a href="privacy.html" class="tf-button tf-button--ghost">Privacy policy</a>
+          </div>
+          <dl class="tf-proof">
+            <div class="tf-proof__item"><dt class="tf-proof__value">TOTP</dt><dd class="tf-proof__label">Time codes</dd></div>
+            <div class="tf-proof__item"><dt class="tf-proof__value">HOTP</dt><dd class="tf-proof__label">Counter codes</dd></div>
+            <div class="tf-proof__item"><dt class="tf-proof__value">0</dt><dd class="tf-proof__label">Data collected</dd></div>
+          </dl>
+        </div>
+        <div class="tf-stage" aria-label="MyCode app preview">
+          <div class="tf-ring" aria-hidden="true"><span>21s</span></div>
+          <div class="tf-phone">
+            <div class="tf-phone__screen">
+              <img src="assets/iphone-accounts.png" alt="MyCode account list with verification codes and countdown timers" width="1320" height="2868">
+            </div>
+          </div>
+          <div class="tf-totp-card" aria-hidden="true">
+            <div class="tf-totp-card__top"><span>GitHub</span><span>SHA-1</span></div>
+            <div class="tf-code"><span>4</span><span>8</span><span>1</span><span>2</span><span>0</span><span>6</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tf-section" id="workflow">
+      <div class="container">
+        <div class="tf-section__head reveal">
+          <span class="tf-section__eyebrow">Daily flow</span>
+          <h2 class="tf-section__title">From QR code to sign-in without losing rhythm.</h2>
+          <p class="tf-section__copy">The app is built around the practical moments that matter: adding accounts correctly, finding codes fast, filling them into apps and websites, and keeping a recoverable encrypted backup.</p>
+        </div>
+        <div class="tf-workflow">
+          <article class="tf-step reveal reveal-delay-1">
+            <span class="tf-step__num">01 / Capture</span>
+            <h3>Scan or paste</h3>
+            <p>Add standard otpauth QR codes with the camera, paste otpauth URIs, or enter issuer, account, secret, algorithm, digits, and period manually.</p>
+          </article>
+          <article class="tf-step reveal reveal-delay-2">
+            <span class="tf-step__num">02 / Organize</span>
+            <h3>Group and favorite</h3>
+            <p>Search by issuer or account name, place codes into groups, and pin important accounts so the right code is never buried.</p>
+          </article>
+          <article class="tf-step reveal reveal-delay-3">
+            <span class="tf-step__num">03 / Fill</span>
+            <h3>Use AutoFill</h3>
+            <p>Enable MyCode as a one-time-code provider so matching codes can appear in keyboard suggestions after device authentication.</p>
+          </article>
+          <article class="tf-step reveal">
+            <span class="tf-step__num">04 / Recover</span>
+            <h3>Export safely</h3>
+            <p>Create password-protected encrypted backups, import them later, or export individual accounts as QR codes when moving devices.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tf-section">
+      <div class="container tf-showcase">
+        <div class="tf-mac reveal">
+          <img src="assets/mac-accounts.png" alt="MyCode running on macOS with grouped authentication accounts" width="2880" height="1800">
+        </div>
+        <div class="tf-showcase__copy reveal reveal-delay-1">
+          <span class="tf-section__eyebrow">Across Apple devices</span>
+          <h2 class="tf-section__title">Built for iPhone, iPad, and Mac.</h2>
+          <p class="tf-section__copy">MyCode includes a native macOS app and menu bar access, plus shared data storage for the main app and AutoFill extension. App Intents expose code actions to Siri and Shortcuts while code access still requires local device authentication.</p>
+          <div class="tf-feature-list">
+            <article class="tf-feature">
+              <span class="tf-feature__mark">AF</span>
+              <div><h3>AutoFill extension</h3><p>Silent matching when possible, with an account picker fallback when the requested service needs a manual choice.</p></div>
+            </article>
+            <article class="tf-feature">
+              <span class="tf-feature__mark">SI</span>
+              <div><h3>Siri and Shortcuts</h3><p>Get, copy, list, and add-account intents for users who want system-level workflows.</p></div>
+            </article>
+            <article class="tf-feature">
+              <span class="tf-feature__mark">MB</span>
+              <div><h3>Mac menu bar</h3><p>Copy one-time codes from a compact Mac surface without opening the full window.</p></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tf-section">
+      <div class="container">
+        <div class="tf-section__head reveal">
+          <span class="tf-section__eyebrow">Screens</span>
+          <h2 class="tf-section__title">Fast when unlocked. Quiet when protected.</h2>
+        </div>
+        <div class="tf-gallery">
+          <figure class="tf-shot reveal">
+            <img src="assets/iphone-quick-add.png" alt="MyCode quick add options for scanning or entering an account" width="1320" height="2868">
+          </figure>
+          <figure class="tf-shot reveal reveal-delay-1">
+            <img src="assets/iphone-backup.png" alt="MyCode encrypted backup export screen" width="1320" height="2868">
+          </figure>
+          <figure class="tf-shot reveal reveal-delay-2">
+            <img src="assets/iphone-locked.png" alt="MyCode biometric lock screen" width="1320" height="2868">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="tf-section">
+      <div class="container">
+        <div class="tf-section__head reveal">
+          <span class="tf-section__eyebrow">Privacy model</span>
+          <h2 class="tf-section__title">Codes stay in your vault.</h2>
+        </div>
+        <div class="tf-privacy-grid">
+          <article class="tf-privacy-card reveal reveal-delay-1">
+            <h3>On-device generation</h3>
+            <p>Verification codes are generated from saved secrets on your device. MyCode does not run an account-code server.</p>
+          </article>
+          <article class="tf-privacy-card reveal reveal-delay-2">
+            <h3>No collected data</h3>
+            <p>The App Store privacy configuration declares no collected data and no tracking. Camera access is only for QR scanning.</p>
+          </article>
+          <article class="tf-privacy-card reveal reveal-delay-3">
+            <h3>Protected access</h3>
+            <p>Biometric lock, configurable auto-lock, local authentication for code intents, and encrypted backups reduce account-loss and exposure risk.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tf-final">
+      <div class="container">
+        <h2>Make 2FA feel less like friction.</h2>
+        <p>MyCode - 2FA is a focused authenticator for people who want fast sign-ins, system integration, and a private recovery path.</p>
+        <a href="privacy.html" class="tf-button tf-button--primary">Read the privacy policy</a>
+        <div class="tf-link-row">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms</a>
+          <a href="#" data-email-user="asapp" data-email-domain="me.com">Support</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner container">
+      <p class="footer__copy">&copy; 2026 Antoine Barrault</p>
+      <div class="footer__links">
+        <a href="https://github.com/barrault01" target="_blank" rel="noopener noreferrer" class="footer__link">GitHub</a>
+        <a href="https://www.linkedin.com/in/ant1/" target="_blank" rel="noopener noreferrer" class="footer__link">LinkedIn</a>
+        <a href="https://x.com/_ant_one" target="_blank" rel="noopener noreferrer" class="footer__link">X</a>
+        <a href="../blog.html" class="footer__link">Blog</a>
+        <a href="#" data-email-user="antoine" data-email-domain="asapps.fr" class="footer__link">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/email.js"></script>
+</body>
+</html>
