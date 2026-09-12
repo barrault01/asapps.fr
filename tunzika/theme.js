@@ -1,0 +1,1 @@
+document.querySelector('[data-theme-toggle]').addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='light'?'dark':'light';document.documentElement.dataset.theme=next;try{localStorage.setItem('theme',next)}catch{};});
