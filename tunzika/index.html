@@ -1,1 +1,814 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tunzika — Radio, discovery, play</title><meta name="description" content="Live radio, music discovery and a playlist quiz for iPhone and iPad."><link rel="canonical" href="https://asapps.fr/tunzika/"><meta property="og:title" content="Tunzika — Radio, discovery, play"><meta property="og:description" content="Live radio, music discovery and a playlist quiz for iPhone and iPad."><meta property="og:url" content="https://asapps.fr/tunzika/"><meta property="og:type" content="website"><meta property="og:image" content="https://asapps.fr/tunzika/app-icon.png"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; object-src 'none'"><script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||'dark'}catch{}</script><link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="site.css"></head><body><nav class="site-nav" aria-label="Main navigation"><a class="site-nav__brand" href="./">Tunzika</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a><button class="site-nav__theme" data-theme-toggle aria-label="Switch between light and dark appearance">Light / dark</button></nav><main class="hero"><div><img class="hero__icon" src="app-icon.png" alt="Tunzika icon"><span class="hero__label">Radio · Music · Play</span><h1>Your radio.<br>Your next discovery.</h1><p>Listen to live stations, recognize the song in the room, and put your music knowledge to the test. A warmer place for your daily listening.</p><div class="hero__links"><a href="support.html">Get help</a><a href="privacy.html">Your privacy</a></div><p class="hero__note">For iPhone and iPad with iOS 27. Radio requires internet. Apple Music playback and the playlist quiz require a compatible subscription. The new music interface currently uses French.</p></div><div class="hero__images"><img src="radio.png" alt="Tunzika radio with favorites and playback controls" width="1206" height="2622"><img src="quiz.png" alt="Blind Test game with a turntable and typed or spoken answers" width="1206" height="2622"></div></main><footer class="site-footer"><p>© 2026 Antoine Barrault</p><a href="https://asapps.fr/">AS Apps</a><a href="terms.html">Terms</a><a href="mailto:contact@asapps.fr">Contact</a></footer><script src="theme.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#faf8f4" />
+    <title>Tunzika — Listen. Discover. Play.</title>
+    <meta
+      name="description"
+      content="Your favorite radio, your next music discovery, and a playlist quiz. Meet Tunzika for iPhone and iPad. Free radio. No account. Just press play."
+    />
+    <link rel="canonical" href="https://asapps.fr/tunzika/" />
+    <meta property="og:title" content="Tunzika — Listen. Discover. Play." />
+    <meta
+      property="og:description"
+      content="Live radio, music discovery, and a playlist quiz. A little more soul in your everyday listening."
+    />
+    <meta property="og:url" content="https://asapps.fr/tunzika/" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://asapps.fr/tunzika/app-icon.png"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self'"
+    />
+    <link rel="icon" href="app-icon.png" type="image/png" />
+    <link
+      rel="preload"
+      href="assets/manrope.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="assets/home-light.webp" as="image" />
+    <link rel="stylesheet" href="landing.css?v=20261004-1" />
+    <script src="landing.js?v=20261004-1" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-copy="skip">Skip to content</a>
+    <header class="nav-wrap">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="Tunzika home"
+          ><img src="app-icon.png" alt="" width="30" height="30" /><img
+            class="brand-wordmark"
+            src="assets/tunzika-wordmark.svg"
+            alt="Tunzika"
+            width="104"
+            height="27"
+        /></a>
+        <div class="nav-links">
+          <a href="#radio" data-copy="navRadio">Radio</a
+          ><a href="#features" data-copy="navFeatures">Features</a
+          ><a href="#privacy" data-copy="navPrivacy">Privacy</a
+          ><a href="#faq">FAQ</a>
+        </div>
+        <a
+          class="nav-download"
+          href="https://apps.apple.com/app/id6811324576"
+          data-copy="download"
+          >Get Tunzika</a
+        >
+        <div class="language-control">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z" /></svg
+          ><label class="sr-only" for="language">Website language</label
+          ><select id="language">
+            <option value="en">EN</option>
+            <option value="fr">FR</option>
+            <option value="pt">PT</option>
+          </select>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <div class="hero-brand">
+            <img
+              class="hero-icon"
+              src="app-icon.png"
+              alt=""
+              width="56"
+              height="56"
+            /><svg
+              class="hero-wordmark"
+              viewBox="-7 -10 424 110"
+              width="220"
+              height="57"
+              role="img"
+              aria-label="Tunzika"
+            >
+              <title>Tunzika</title>
+              <g
+                fill="none"
+                stroke="currentColor"
+                stroke-width="7.82"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  class="wordmark-letter"
+                  pathLength="1"
+                  d="M5 3 Q27 1 49 2 M27 2 L27 87"
+                />
+                <path
+                  class="wordmark-letter"
+                  pathLength="1"
+                  d="M66 3 L65 60 Q65 87 88 88 Q112 88 113 59 L113 2"
+                />
+                <path
+                  class="wordmark-letter"
+                  pathLength="1"
+                  d="M130 88 L130 3 L180 87 L180 2"
+                />
+                <path
+                  class="wordmark-letter"
+                  pathLength="1"
+                  d="M197 2 L245 2 L197 87 L245 87"
+                />
+                <path
+                  class="wordmark-letter"
+                  pathLength="1"
+                  d="M265 3 L265 87"
+                />
+                <path
+                  class="wordmark-letter"
+                  pathLength="1"
+                  d="M287 3 L287 87 M335 2 L289 46 M304 43 L337 87"
+                />
+                <path
+                  class="wordmark-letter"
+                  pathLength="1"
+                  d="M354 87 L379 3 Q381 0 383 5 L405 87 M365 58 L394 58"
+                />
+              </g>
+            </svg>
+          </div>
+          <h1 id="hero-title">
+            <span data-copy="listen">Listen.</span>
+            <span data-copy="discover">Discover.</span>
+            <em data-copy="play">Play.</em>
+          </h1>
+          <p class="hero-description" data-copy="heroDescription">
+            Your favorite radio. The song you just fell for. A quiz you can’t
+            stop playing. All in one beautifully analog app.
+          </p>
+          <a
+            class="store-link"
+            href="https://apps.apple.com/app/id6811324576"
+            aria-label="Download Tunzika on the App Store"
+            ><img
+              src="assets/app-store.svg"
+              alt="Download on the App Store"
+              width="166"
+              height="55"
+          /></a>
+          <p class="hero-note" data-copy="heroNote">
+            Free radio. No account. Just press play.
+          </p>
+        </div>
+        <div class="hero-stage" aria-label="Tunzika app previews">
+          <div class="phone hero-phone phone-left">
+            <img
+              src="assets/discover-light.webp"
+              data-preview="discover"
+              alt="Tunzika Discover with song recognition and saved discoveries"
+              width="720"
+              height="1564"
+            /><span class="phone-island" aria-hidden="true"></span>
+          </div>
+          <div class="phone hero-phone phone-center">
+            <img
+              src="assets/home-light.webp"
+              data-preview="home"
+              alt="Tunzika radio home with Antena 1 and favorite stations"
+              width="720"
+              height="1564"
+            /><span class="phone-island" aria-hidden="true"></span>
+          </div>
+          <div class="phone hero-phone phone-right">
+            <img
+              src="assets/quiz-light.webp"
+              data-preview="quiz"
+              alt="Tunzika Blind Test with a vinyl turntable and answer controls"
+              width="720"
+              height="1564"
+            /><span class="phone-island" aria-hidden="true"></span>
+          </div>
+          <div class="stage-caption caption-left">
+            <span class="tiny-line"></span
+            ><span data-copy="captionRadio">Old-school soul.</span>
+          </div>
+          <div class="stage-caption caption-right">
+            <span data-copy="captionModern">A whole new way to listen.</span
+            ><span class="tiny-line"></span>
+          </div>
+        </div>
+        <div
+          class="appearance-picker"
+          role="group"
+          aria-label="App preview appearance"
+        >
+          <button type="button" data-appearance="light" aria-pressed="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"
+              /></svg
+            ><span data-copy="day">Day</span></button
+          ><button type="button" data-appearance="dark" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"
+              /></svg
+            ><span data-copy="night">Night</span>
+          </button>
+        </div>
+      </section>
+      <section class="intro section" aria-labelledby="intro-title">
+        <p class="eyebrow" data-copy="introEyebrow">
+          Made for the love of music
+        </p>
+        <h2 id="intro-title">
+          <span data-copy="introStart">Less searching.</span><br /><em
+            data-copy="introEnd"
+            >More finding your sound.</em
+          >
+        </h2>
+        <p data-copy="introText">
+          A familiar station to start your morning. A new song that stays with
+          you. Tunzika brings the joy of radio and the thrill of discovery
+          together.
+        </p>
+        <div class="integrations" aria-label="Apple integrations">
+          <span>Shazam</span><span>Apple Music</span><span>CarPlay</span
+          ><span>Siri</span><span>Apple Watch</span>
+        </div>
+      </section>
+      <section
+        class="radio-section section split"
+        id="radio"
+        aria-labelledby="radio-title"
+      >
+        <div class="feature-visual radio-visual">
+          <div class="phone feature-phone">
+            <img
+              src="assets/player-light.webp"
+              alt="Tunzika live radio player for Antena 1"
+              width="720"
+              height="1564"
+              loading="lazy"
+            /><span class="phone-island" aria-hidden="true"></span>
+          </div>
+          <span class="visual-label" data-copy="radioLabel"
+            >YOUR DAILY SOUNDTRACK</span
+          >
+        </div>
+        <div class="feature-copy">
+          <p class="eyebrow" data-copy="radioEyebrow">Tune in</p>
+          <h2 id="radio-title">
+            <span data-copy="radioTitleStart">The world is on air.</span
+            ><br /><em data-copy="radioTitleEnd">Find your frequency.</em>
+          </h2>
+          <p data-copy="radioText">
+            Browse thousands of live stations by country, city, or genre. Keep
+            your favorites close, and let the music follow you through your day.
+          </p>
+          <ul class="feature-list">
+            <li data-copy="radioBullet1">
+              Your favorite stations, one tap away
+            </li>
+            <li data-copy="radioBullet2">
+              Background and Lock Screen playback
+            </li>
+            <li data-copy="radioBullet3">
+              A sleep timer for the last song of the night
+            </li>
+            <li data-copy="radioBullet4">
+              CarPlay, Siri, and Apple Watch controls
+            </li>
+          </ul>
+          <a
+            class="text-link"
+            href="https://apps.apple.com/app/id6811324576"
+            data-copy="radioCta"
+            >Find your next favorite station</a
+          >
+        </div>
+      </section>
+      <section
+        class="gallery-section"
+        id="features"
+        aria-labelledby="gallery-title"
+      >
+        <div class="section gallery-heading">
+          <div>
+            <p class="eyebrow" data-copy="galleryEyebrow">A closer look</p>
+            <h2 id="gallery-title" data-copy="galleryTitle">
+              A little app. A lot to love.
+            </h2>
+            <p data-copy="galleryText">
+              Radio, discoveries, and a turntable with a competitive streak.
+              Take a look around.
+            </p>
+          </div>
+          <div class="gallery-controls">
+            <button
+              type="button"
+              id="gallery-prev"
+              aria-label="Show previous app screen"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m14 6-6 6 6 6" />
+              </svg></button
+            ><button
+              type="button"
+              id="gallery-next"
+              aria-label="Show next app screen"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m10 6 6 6-6 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div
+          class="gallery"
+          id="gallery"
+          tabindex="0"
+          role="region"
+          aria-label="Swipeable app screenshot gallery"
+        >
+          <article class="gallery-card">
+            <span class="card-number" data-copy="gallery1Label"
+              >01 / RADIO</span
+            >
+            <h3 data-copy="gallery1Title">Right where you left off.</h3>
+            <div class="phone gallery-phone">
+              <img
+                src="assets/home-light.webp"
+                alt="Radio home and favorite stations"
+                width="720"
+                height="1564"
+                loading="lazy"
+              /><span class="phone-island" aria-hidden="true"></span>
+            </div>
+            <p data-copy="gallery1Text">
+              Your last station and your favorites, ready when you are.
+            </p>
+          </article>
+          <article class="gallery-card">
+            <span class="card-number" data-copy="gallery2Label"
+              >02 / PLAYER</span
+            >
+            <h3 data-copy="gallery2Title">Just you and the music.</h3>
+            <div class="phone gallery-phone">
+              <img
+                src="assets/player-light.webp"
+                alt="Live radio player with station controls"
+                width="720"
+                height="1564"
+                loading="lazy"
+              /><span class="phone-island" aria-hidden="true"></span>
+            </div>
+            <p data-copy="gallery2Text">
+              A radio-inspired dial. Real live stations. No distractions.
+            </p>
+          </article>
+          <article class="gallery-card">
+            <span class="card-number" data-copy="gallery3Label"
+              >03 / DISCOVER</span
+            >
+            <h3 data-copy="gallery3Title">“What’s this song?”</h3>
+            <div class="phone gallery-phone">
+              <img
+                src="assets/discover-light.webp"
+                alt="Shazam recognition and album scanning in Discover"
+                width="720"
+                height="1564"
+                loading="lazy"
+              /><span class="phone-island" aria-hidden="true"></span>
+            </div>
+            <p data-copy="gallery3Text">
+              Recognize it with Shazam and keep your discoveries together.
+            </p>
+          </article>
+          <article class="gallery-card">
+            <span class="card-number" data-copy="gallery4Label"
+              >04 / BLIND TEST</span
+            >
+            <h3 data-copy="gallery4Title">Know it in three notes?</h3>
+            <div class="phone gallery-phone">
+              <img
+                src="assets/quiz-light.webp"
+                alt="Blind Test song quiz"
+                width="720"
+                height="1564"
+                loading="lazy"
+              /><span class="phone-island" aria-hidden="true"></span>
+            </div>
+            <p data-copy="gallery4Text">
+              Pick a playlist. Name that tune. Put your ears to the test.
+            </p>
+          </article>
+          <article class="gallery-card">
+            <span class="card-number" data-copy="gallery5Label"
+              >05 / WIDGETS</span
+            >
+            <h3 data-copy="gallery5Title">Always within reach.</h3>
+            <div class="phone gallery-phone">
+              <img
+                src="assets/widgets-light.webp"
+                alt="Tunzika widget preview and configuration"
+                width="720"
+                height="1564"
+                loading="lazy"
+              /><span class="phone-island" aria-hidden="true"></span>
+            </div>
+            <p data-copy="gallery5Text">
+              Resume your last station straight from your Home Screen.
+            </p>
+          </article>
+          <article class="gallery-card">
+            <span class="card-number" data-copy="gallery6Label"
+              >06 / YOUR STYLE</span
+            >
+            <h3 data-copy="gallery6Title">Make yourself at home.</h3>
+            <div class="phone gallery-phone">
+              <img
+                src="assets/themes-light.webp"
+                alt="Tunzika appearance and personalization settings"
+                width="720"
+                height="1564"
+                loading="lazy"
+              /><span class="phone-island" aria-hidden="true"></span>
+            </div>
+            <p data-copy="gallery6Text">
+              Themes, icons, and station styles that feel like you.
+            </p>
+          </article>
+        </div>
+        <p class="gallery-hint section" data-copy="galleryHint">
+          Swipe or use the controls to explore. Screens show the app with
+          preview stations and music.
+        </p>
+      </section>
+      <section
+        class="discover-section section split"
+        aria-labelledby="discover-title"
+      >
+        <div class="feature-copy">
+          <p class="eyebrow" data-copy="discoveryEyebrow">
+            Follow your curiosity
+          </p>
+          <h2 id="discover-title">
+            <span data-copy="discoveryTitleStart">That song.</span><br /><em
+              data-copy="discoveryTitleEnd"
+              >Now you know.</em
+            >
+          </h2>
+          <p data-copy="discoveryText">
+            Some songs find you before you find them. Recognize music around you
+            with Shazam, search Apple Music, or scan the printed text on an
+            album sleeve.
+          </p>
+          <p data-copy="discoveryText2">
+            Keep the discoveries worth coming back to in one place.
+          </p>
+          <div class="service-label">
+            <span class="service-monogram" aria-hidden="true">S</span
+            ><span data-copy="discoveryPowered"
+              >Song recognition with Shazam</span
+            >
+          </div>
+        </div>
+        <div class="feature-visual discover-visual">
+          <div class="phone feature-phone">
+            <img
+              src="assets/discover-light.webp"
+              alt="Tunzika music discovery screen"
+              width="720"
+              height="1564"
+              loading="lazy"
+            /><span class="phone-island" aria-hidden="true"></span>
+          </div>
+          <span class="visual-label" data-copy="discoveryLabel"
+            >CURIOSITY SOUNDS GOOD ON YOU</span
+          >
+        </div>
+      </section>
+      <section class="quiz-section section" aria-labelledby="quiz-title">
+        <div class="quiz-copy">
+          <p class="eyebrow" data-copy="quizEyebrow">Let’s play</p>
+          <h2 id="quiz-title">
+            <span data-copy="quizTitleStart">Great taste.</span><br /><em
+              data-copy="quizTitleEnd"
+              >How’s your memory?</em
+            >
+          </h2>
+          <p data-copy="quizText">
+            Turn your Apple Music playlists into a Blind Test. You get a
+            30-second excerpt. Name the artist, the song, the film, or the
+            series. Type it, or say it out loud.
+          </p>
+          <p class="quiz-note" data-copy="quizNote">
+            Apple Music playback and Blind Test require a compatible Apple Music
+            subscription.
+          </p>
+        </div>
+        <div class="quiz-screen">
+          <div class="phone feature-phone">
+            <img
+              src="assets/quiz-dark.webp"
+              alt="Blind Test in dark appearance with its vinyl turntable"
+              width="720"
+              height="1564"
+              loading="lazy"
+            /><span class="phone-island" aria-hidden="true"></span>
+          </div>
+        </div>
+      </section>
+      <section
+        class="everywhere-section section"
+        aria-labelledby="everywhere-title"
+      >
+        <p class="eyebrow" data-copy="everywhereEyebrow">
+          In tune with your day
+        </p>
+        <h2 id="everywhere-title">
+          <span data-copy="everywhereStart">Your radio.</span>
+          <em data-copy="everywhereEnd">Within reach.</em>
+        </h2>
+        <div class="everywhere-grid">
+          <article>
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="5" y="5" width="9" height="9" rx="2" />
+              <rect x="18" y="5" width="9" height="9" rx="2" />
+              <rect x="5" y="18" width="22" height="9" rx="2" />
+            </svg>
+            <h3 data-copy="everywhere1Title">On your Home Screen.</h3>
+            <p data-copy="everywhere1Text">
+              Widgets bring your last station and favorites a tap closer.
+            </p>
+          </article>
+          <article>
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <path
+                d="m6 13 3-7h14l3 7v13h-4v-4H10v4H6V13Zm0 0h20M10 17h1m10 0h1"
+              />
+            </svg>
+            <h3 data-copy="everywhere2Title">Along for the ride.</h3>
+            <p data-copy="everywhere2Text">
+              Browse stations, favorites, and recent listens with CarPlay.
+            </p>
+          </article>
+          <article>
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="9" y="8" width="14" height="16" rx="5" />
+              <path d="m12 8 1-5h6l1 5m-8 16 1 5h6l1-5m-4-9v4l3 1" />
+            </svg>
+            <h3 data-copy="everywhere3Title">A glance away.</h3>
+            <p data-copy="everywhere3Text">
+              Control your radio from Apple Watch, or ask Siri to play.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section
+        class="privacy-section section"
+        id="privacy"
+        aria-labelledby="privacy-title"
+      >
+        <div class="privacy-heading">
+          <p class="eyebrow" data-copy="privacyEyebrow">
+            Your music. Your business.
+          </p>
+          <h2 id="privacy-title">
+            <span data-copy="privacyTitleStart">Good sound.</span><br /><em
+              data-copy="privacyTitleEnd"
+              >Quiet on the data.</em
+            >
+          </h2>
+          <p data-copy="privacyText">
+            No Tunzika account. No advertising. No analytics backend. Your
+            listening life belongs to you.
+          </p>
+        </div>
+        <div class="privacy-grid">
+          <article>
+            <span class="privacy-index">01</span>
+            <h3 data-copy="privacy1Title">No sign-up ritual.</h3>
+            <p data-copy="privacy1Text">
+              Choose a country, find a station, and listen. That’s all it takes.
+            </p>
+          </article>
+          <article>
+            <span class="privacy-index">02</span>
+            <h3 data-copy="privacy2Title">Stays on your device.</h3>
+            <p data-copy="privacy2Text">
+              Your country, radio favorites, and listening history are stored
+              locally.
+            </p>
+          </article>
+          <article>
+            <span class="privacy-index">03</span>
+            <h3 data-copy="privacy3Title">You choose the access.</h3>
+            <p data-copy="privacy3Text">
+              Microphone, camera, and music permissions are requested when you
+              use those features.
+            </p>
+          </article>
+        </div>
+        <a class="text-link" href="privacy.html" data-copy="privacyCta"
+          >Read the privacy policy</a
+        >
+      </section>
+      <section class="pro-section section" aria-labelledby="pro-title">
+        <div class="pro-heading">
+          <p class="eyebrow" data-copy="proEyebrow">
+            Start free. Stay for the music.
+          </p>
+          <h2 id="pro-title">
+            <span data-copy="proTitleStart">Radio is free.</span><br /><em
+              data-copy="proTitleEnd"
+              >More room with Pro.</em
+            >
+          </h2>
+          <p data-copy="proText">
+            Listen first. If you want a bigger collection and more ways to make
+            it yours, there’s Tunzika Pro.
+          </p>
+        </div>
+        <div class="plan-grid">
+          <article class="plan free-plan">
+            <p class="plan-label">Tunzika</p>
+            <h3 data-copy="freeTitle">Press play.</h3>
+            <p data-copy="freeText">
+              Everything you need to find your station.
+            </p>
+            <ul>
+              <li data-copy="free1">Free live radio in your chosen country</li>
+              <li data-copy="free2">5 favorite stations</li>
+              <li data-copy="free3">
+                3 song recognitions or album scans combined
+              </li>
+              <li data-copy="free4">Background playback and sleep timer</li>
+            </ul>
+            <a
+              class="plan-link"
+              href="https://apps.apple.com/app/id6811324576"
+              data-copy="freeCta"
+              >Download free</a
+            >
+          </article>
+          <article class="plan pro-plan">
+            <p class="plan-label">Tunzika Pro</p>
+            <h3 data-copy="paidTitle">Make it yours.</h3>
+            <p data-copy="paidText">A bigger world of radio and discovery.</p>
+            <ul>
+              <li data-copy="paid1">Unlimited favorites</li>
+              <li data-copy="paid2">Unlimited recognitions and album scans</li>
+              <li data-copy="paid3">Change your listening country</li>
+              <li data-copy="paid4">
+                All themes, app icons, and station styles
+              </li>
+            </ul>
+            <p class="plan-footnote" data-copy="paidNote">
+              Monthly, yearly, or lifetime. Prices in the app.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section
+        class="download-section section"
+        aria-labelledby="download-title"
+      >
+        <img src="app-icon.png" alt="" width="72" height="72" loading="lazy" />
+        <p class="eyebrow" data-copy="downloadEyebrow">
+          Your next favorite is out there
+        </p>
+        <h2 id="download-title">
+          <span data-copy="downloadStart">Let’s find</span>
+          <em data-copy="downloadEnd">your sound.</em>
+        </h2>
+        <p data-copy="downloadText">
+          Tunzika for iPhone and iPad. Put a little more music in your day.
+        </p>
+        <a
+          class="store-link"
+          href="https://apps.apple.com/app/id6811324576"
+          aria-label="Download Tunzika on the App Store"
+          ><img
+            src="assets/app-store.svg"
+            alt="Download on the App Store"
+            width="166"
+            height="55"
+            loading="lazy"
+        /></a>
+        <p class="download-note" data-copy="downloadNote">
+          Radio requires an internet connection. Streams are provided by
+          independent stations.
+        </p>
+      </section>
+      <section class="faq-section section" id="faq" aria-labelledby="faq-title">
+        <div>
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-title">
+            <span data-copy="faqTitleStart">A few things</span><br /><em
+              data-copy="faqTitleEnd"
+              >you might wonder.</em
+            >
+          </h2>
+          <a class="text-link" href="support.html" data-copy="faqSupport"
+            >Visit Tunzika Support</a
+          >
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary data-copy="faq1Q">Is Tunzika free?</summary>
+            <p data-copy="faq1A">
+              Yes. Live radio is free in your chosen country, with background
+              playback and a sleep timer. The free tier includes 5 favorites and
+              3 song recognitions or album scans combined. Tunzika Pro lifts
+              those limits and unlocks country changes and personalization.
+            </p>
+          </details>
+          <details>
+            <summary data-copy="faq2Q">
+              Do I need an Apple Music subscription?
+            </summary>
+            <p data-copy="faq2A">
+              You don’t need Apple Music to listen to radio. Apple Music
+              playback and the Blind Test quiz require authorized access and a
+              compatible Apple Music subscription. Availability depends on your
+              account and region.
+            </p>
+          </details>
+          <details>
+            <summary data-copy="faq3Q">
+              Can I listen with my phone locked?
+            </summary>
+            <p data-copy="faq3A">
+              Yes. Radio keeps playing in the background, with controls on the
+              Lock Screen and in Control Center. You can also use CarPlay, Siri
+              shortcuts, and Apple Watch radio controls.
+            </p>
+          </details>
+          <details>
+            <summary data-copy="faq4Q">Can I listen offline?</summary>
+            <p data-copy="faq4A">
+              Live radio needs an internet connection. Tunzika does not download
+              radio streams or Apple Music tracks for offline listening.
+            </p>
+          </details>
+          <details>
+            <summary data-copy="faq5Q">
+              Does my radio history sync across devices?
+            </summary>
+            <p data-copy="faq5A">
+              Your selected country, radio favorites, and radio history stay on
+              your device. Tunzika doesn’t run an account or analytics backend.
+              Optional recognition and music features contact Apple services,
+              and stations receive standard network information when you
+              connect.
+            </p>
+          </details>
+          <details>
+            <summary data-copy="faq6Q">
+              Which languages does the app support?
+            </summary>
+            <p data-copy="faq6A">
+              Tunzika is available in English, French, Brazilian Portuguese,
+              Spanish, German, and Italian on iPhone and iPad.
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+    <footer class="footer section">
+      <div class="footer-top">
+        <a class="brand" href="#top"
+          ><img src="app-icon.png" alt="" width="30" height="30" /><img
+            class="brand-wordmark"
+            src="assets/tunzika-wordmark.svg"
+            alt="Tunzika"
+            width="104"
+            height="27" /></a
+        ><span data-copy="footerTagline">Radio. Music. Play.</span>
+        <div class="footer-links">
+          <a href="support.html" data-copy="support">Support</a
+          ><a href="privacy.html" data-copy="privacyPolicy">Privacy policy</a
+          ><a href="terms.html" data-copy="terms">Terms</a
+          ><a href="mailto:contact@asapps.fr" data-copy="contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2026 Antoine Barrault · <a href="https://asapps.fr/">AS Apps</a>
+        </p>
+        <p data-copy="footerCredit">Made with a love of radio.</p>
+      </div>
+      <p class="legal-note" data-copy="legalNote">
+        Tunzika is an independent app and is not affiliated with Apple Inc.
+        Apple Music, Shazam, CarPlay, Siri, and Apple Watch are trademarks of
+        their respective owners. Station streams and artwork belong to their
+        providers.
+      </p>
+    </footer>
+  </body>
+</html>
